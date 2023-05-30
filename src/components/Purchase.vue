@@ -1,17 +1,6 @@
 <template>
-    <div class="py-3">
-        <!-- <div class="flex justify-around items-center flex-wrap px-2 sm:flex-no-wrap">
-            <div class="w-5/12 mb-1 flex flex-col justify-center items-center sm:w-56" @click="clickTeam(index)"
-                v-for="(item, index) in purchaseList" :key="index">
-                <div class="w-9/12 rounded-full" :class="currentTeam === index ? 'item-clicked' : ''">
-                    <img :src="item.image" class="w-full" />
-                </div>
-                <div class="text-base text-text" :class="currentTeam === index ? 'item-title-clicked' : ''">
-                    {{ item.title }}
-                </div>
-            </div>
-        </div> -->
-        <div class="w-11/12 mr-auto ml-auto sm:flex  sm:rounded-full sm:h-12 sm:justify-between sm:px-10">
+    <div class="pt-4">
+        <div class="w-11/12 mr-auto ml-auto sm:flex sm:rounded-full sm:h-12 sm:justify-between sm:px-10">
             <div class="flex justify-between items-center text-text sm:text-text sm:w-2/4 sm:justify-start">
                 <div class="text-lg sm:mr-6">
                     Key
@@ -25,15 +14,11 @@
                     {{ numFilter(ethProportion) }} @HAH
                 </div>
             </div>
-            <div class="flex justify-between items-center py-4">
+            <div class="flex justify-between items-center mt-4 pb-4">
                 <div class="w-full cursor-pointer text-lg border border-primary rounded-full text-center py-1 text-text sm:border-text sm:text-text sm:px-20"
                     @click="toSend()">
                     {{ $t('purchase.send') }}
                 </div>
-                <!-- <div
-                    class="border-text text-lg border rounded-full px-6 py-1 text-text sm:border-text sm:text-text sm:ml-6">
-                    Use Valut
-                </div> -->
             </div>
         </div>
     </div>
