@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pb-8">
         <div ref="vantaRef" style="width:100%;height:100vh;position:fixed;z-index: -1;"></div>
         <menu-bar></menu-bar>
         <div class="bg-primary text-text rounded-lg mt-2 mr-auto ml-auto mb-2 w-11/12 sm:w-10/12 p-2 text-center">
