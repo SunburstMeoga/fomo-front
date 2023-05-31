@@ -68,7 +68,6 @@ export default {
                             return
                         }
                         this.earnings = parseInt(res) * parseInt(result) / parseInt(totalKeysSold)
-
                         console.log('earnings:', this.earnings, res, result, totalKeysSold)
                     })
                 })

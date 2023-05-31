@@ -12,7 +12,7 @@
                     {{ countTime }}
                 </div>
                 <div class='w-full h-0.5 bg-barWhite mb-2'>
-                    <div class='bg-text py-px' :style="{ width: barWidth }"></div>
+                    <div class='bg-primary py-px' :style="{ width: barWidth }"></div>
                 </div>
                 <div class="sm:mt-10">
                     <div class='flex justify-between text-text mb-2 sm:mb-2' v-for='(item, index) in roundList'
@@ -43,20 +43,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class='flex flex-wrap justify-between items-center w-11/12 mr-auto ml-auto sm:w-2/5 sm:justify-around'>
-                <div class='w-9/20 rounded text-text flex flex-col items-center justify-center mb-2 bg-teamBg bg-opacity-75 sm:w-2/5'
-                    v-for='(item, index) in purchaseList' :key='index'>
-                    <div class='text-lg'>
-                        {{ item.title }}
-                    </div>
-                    <div class='w-full sm:w-1/2 sm:flex sm:justify-center sm:items-center'>
-                        <img :src='item.image' class="w-full" />
-                    </div>
-                    <div class='text-xl'>
-                        {{ item.value }} HAH
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </template>
@@ -72,13 +58,11 @@ export default {
         return {
             currentRound: '-',
             timer: null,
-            barLongPoint: 0
+            barLongPoint: 0,
+            countTime: '-'
         }
     },
     computed: {
-        countTime() {
-            return this.$t('round.loading')
-        },
         roundList() {
             return [
                 {
@@ -140,6 +124,9 @@ export default {
         },
         countDown(endTimeStamp) {
             var nowTimeStamp = new Date().getTime()
+            console.log('nowTimeStamp', nowTimeStamp)
+            console.log('endTimeStamp', endTimeStamp)
+
             var time = {}
             if (endTimeStamp > nowTimeStamp) {
                 var mss = endTimeStamp - nowTimeStamp
@@ -164,7 +151,9 @@ export default {
                     mss: '00'
                 }
                 clearInterval(this.timer)
-                this.countTime = 'Loading...'
+                this.countTime = this.$t('round.loading')
+                this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
+
             }
             this.barLongPoint = (((time.hour * 60 * 60 + minutes * 60 + seconds) / 86400).toFixed(4)) * 100
         },
@@ -186,17 +175,17 @@ export default {
             })
             web3Contract.methods.pot().call().then((result) => {
                 console.log('pot:', result)
-                this.roundList[1].content = result + ' HAH'
+                this.roundList[1].content = this.Web3.utils.fromWei(result, 'ether') + ' HAH'
 
             })
             web3Contract.methods.totalKeysSold().call().then((result) => {
                 console.log('totalKeysSold:', result)
-                this.roundList[2].content = result + ' HAH'
+                this.roundList[2].content = result
 
             })
             web3Contract.methods.roundCount().call().then((result) => {
                 console.log('roundCount:', result)
-                this.roundList[3].content = result + ' HAH'
+                this.roundList[3].content = result
                 this.currentRound = parseInt(result) + 1
             })
 
