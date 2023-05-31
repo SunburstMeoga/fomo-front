@@ -93,28 +93,30 @@ export default {
                 forbidClick: true,
                 duration: 0
             });
-            this.$bus.$emit('buySuccess')
-            // return
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             let data = web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).encodeABI()
-            // console.log('this.ethProportion', this.ethProportion)
-            // return
-            this.Web3.eth.sendTransaction({
-                to: config.con_addr,
-                from: window.ethereum.selectedAddress,
-                data: data,
-                value: this.Web3.utils.toWei(this.ethProportion, 'ether')
+            web3Contract.methods.calculateKeyPrice(this.keyNumber).call().then((result) => {
+                console.log('当前一个key需要', result, '个wei')
+
+                this.Web3.eth.sendTransaction({
+                    to: config.con_addr,
+                    from: window.ethereum.selectedAddress,
+                    data: data,
+                    value: result
+                })
+                    .on('confirmation', (confirmationNumber, receipt) => {
+                        Toast(this.$t('word.success'))
+                        this.keyNumber = 1
+                        this.getEthByKey(this.keyNumber)
+                        this.$bus.$emit('buySuccess')
+
+                    })
+                    .on('error', (error) => {
+                        console.log(error)
+                        Toast.fail(this.$t('word.fail'))
+                    })
             })
-                .on('confirmation', (confirmationNumber, receipt) => {
-                    console.log(confirmationNumber, receipt)
-                    Toast(this.$t('word.success'))
-                    this.keyNumber = 1
-                    this.getEthByKey(this.keyNumber)
-                })
-                .on('error', (error) => {
-                    console.log(error)
-                    Toast.fail(this.$t('word.fail'))
-                })
+
         }
     }
 }

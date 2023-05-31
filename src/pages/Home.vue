@@ -13,7 +13,7 @@
         </div>
 
         <module-title :titleWord="$t('purchase.title')" :secondTitle="$t('purchase.tips')"></module-title>
-        <div class="card mt-2 mr-auto ml-auto mb-4 w-11/12 sm:w-10/12">
+        <div class="card mt-2 mr-auto ml-auto mb-4 w-11/12 sm:pb-3 sm:w-10/12">
             <purchase></purchase>
         </div>
         <module-title :titleWord="$t('round.title')"></module-title>

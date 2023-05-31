@@ -156,7 +156,7 @@ export default {
                 this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
 
             }
-            this.barLongPoint = (((time.hour * 60 * 60 + minutes * 60 + seconds) / 86400).toFixed(4)) * 100
+            this.barLongPoint = (((time.hour * 60 * 60 + minutes * 60 + seconds) / mss).toFixed(4)) * 100
         },
         getInfo() {
             // console.log(new this.Web3.eth.Contract(config.erc20_abi, config.con_addr))
