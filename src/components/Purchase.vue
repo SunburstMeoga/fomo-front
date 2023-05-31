@@ -27,6 +27,7 @@
 <script>
 // import { Loading } from 'element-ui'
 import { config } from '../const/config'
+import { Toast } from 'vant'
 
 export default {
     data() {
@@ -88,12 +89,9 @@ export default {
             console.log('current', index)
         },
         toSend() {
-            const loading = this.$loading({
-                lock: true,
-                text: 'Loading',
-                spinner: 'el-icon-loading',
-                background: 'rgba(0, 0, 0, 0.7)'
-            })
+            Toast.loading({
+                forbidClick: true,
+            });
 
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             let data = web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).encodeABI()
@@ -107,22 +105,13 @@ export default {
             })
                 .on('confirmation', (confirmationNumber, receipt) => {
                     console.log(confirmationNumber, receipt)
-                    this.$notify({
-                        title: 'Success',
-                        message: 'Successful bet',
-                        type: 'success'
-                    })
+                    Toast('Success')
                     this.keyNumber = 1
                     this.getEthByKey(this.keyNumber)
-                    loading.close()
                 })
                 .on('error', (error) => {
                     console.log(error)
-                    loading.close()
-                    this.$notify.error({
-                        title: 'Error',
-                        message: error.message
-                    })
+                    Toast.fail('Fail')
                 })
         }
     }

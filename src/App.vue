@@ -39,6 +39,7 @@ export default {
     if (localStorage.getItem('connectStatus') && localStorage.getItem('connectStatus') === 'connect') {
       this.initWallet()
     }
+    this.accountHasChanged()
   },
   beforeDestroy() {
     clearTimeout(this.timer)
@@ -47,7 +48,14 @@ export default {
     }
   },
   methods: {
-
+    async accountHasChanged() {
+      window.ethereum.on('accountsChanged', (accounts) => {
+        if (accounts.length !== 0) {
+          this.getWalletBalance(accounts[0])
+          console.log('isConnected', this.Web3.currentProvider._state.isConnected)
+        }
+      })
+    },
     async initWallet() {
       try {
         const accounts = await window.ethereum.request({
