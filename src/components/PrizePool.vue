@@ -8,7 +8,7 @@
                 <div class='text-xl font-medium sm:font-bold sm:text-3xl'>
                     {{ $t('round.drain') }}
                 </div>
-                <div class='mb-1 sm:text-xl text-primary font-bold'>
+                <div class='mb-1 text-4xl sm:text-xl text-primary font-bold'>
                     {{ countTime }}
                 </div>
                 <!-- <div class='w-full h-0.5 bg-barWhite mb-2'>
