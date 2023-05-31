@@ -63,7 +63,12 @@ export default {
                 web3Contract.methods.totalKeysSold().call().then((totalKeysSold) => {
                     console.log('totalKeysSold', parseInt(totalKeysSold))
                     web3Contract.methods.accumulatedHolderPrizeShare().call().then((res) => {
+                        if (parseInt(res) * parseInt(result) === 0) {
+                            this.earnings = 0
+                            return
+                        }
                         this.earnings = parseInt(res) * parseInt(result) / parseInt(totalKeysSold)
+
                         console.log('earnings:', this.earnings, res, result, totalKeysSold)
                     })
                 })
