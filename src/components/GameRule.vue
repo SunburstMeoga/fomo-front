@@ -4,11 +4,11 @@
             <div class="rounded-t-lg py-3 text-lg font-bold bg-primary text-center">{{ $t('rules.title') }}</div>
             <div class="h-52 overflow-x-auto py-2 px-4 text-xs mb-2" style="height: 400px;">
                 <p>
-                    {{ $t('rules.purchaseRuleOne') }}
+                    {{ $t('rules.purchaseRuleOne', { chainName: Config.chainName }) }}
                 </p>
                 <br>
                 <p>
-                    {{ $t('rules.purchaseRuleTwo') }}
+                    {{ $t('rules.purchaseRuleTwo', { chainName: Config.chainName }) }}
                 </p>
                 <br>
 

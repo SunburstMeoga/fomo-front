@@ -79,12 +79,12 @@ export default {
                 },
                 {
                     title: this.$t('round.totalKeySold'),
-                    content: '0.0000 HAH',
+                    content: '0.0000 ' + this.Config.chainName,
                     amount: '0 USD'
                 },
                 {
                     title: this.$t('round.roundCount'),
-                    content: '0.0000 HAH',
+                    content: '0.0000 ' + this.Config.chainName,
                     amount: '0 USD'
                 }
             ]
@@ -181,7 +181,7 @@ export default {
             })
             web3Contract.methods.pot().call().then((result) => {
                 console.log('pot:', result)
-                this.roundList[1].content = this.Web3.utils.fromWei(result, 'ether') + ' HAH'
+                this.roundList[1].content = this.Web3.utils.fromWei(result, 'ether') + ' ' + this.Config.chainName
 
             })
             web3Contract.methods.totalKeysSold().call().then((result) => {

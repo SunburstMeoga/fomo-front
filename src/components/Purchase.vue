@@ -11,13 +11,13 @@
                         v-model="keyNumber" @input="keysChange($event)">
                 </div>
                 <div class="text-lg">
-                    {{ numFilter(ethProportion) }} @HAH
+                    {{ numFilter(ethProportion) }} @{{ Config.chainName }}
                 </div>
             </div>
             <div class="flex justify-between items-center mt-4 pb-4">
                 <div class="w-full cursor-pointer text-lg border border-primary rounded-full text-center py-1 text-text sm:border-text sm:text-text sm:px-20"
                     @click="toSend()">
-                    {{ $t('purchase.send') }}
+                    {{ $t('purchase.send', { chainName: Config.chainName }) }}
                 </div>
             </div>
         </div>

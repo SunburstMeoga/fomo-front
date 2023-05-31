@@ -103,8 +103,8 @@ export default {
                                     iconUrls: ['https://testnet.hashahead.org/logo.png'],
                                     blockExplorerUrls: ['https://testnet.hashahead.org/'],
                                     nativeCurrency: {
-                                        name: 'HAH',
-                                        symbol: 'HAH',
+                                        name: this.Config.chainName,
+                                        symbol: this.Config.chainName,
                                         decimals: 18
                                     }
                                 },

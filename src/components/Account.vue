@@ -18,7 +18,7 @@
             </div>
             <div class="flex justify-between items-center text-text">
                 <div>{{ $t('account.balance') }}</div>
-                <div>{{ $store.state.walletInfo.balance }} HAH</div>
+                <div>{{ $store.state.walletInfo.balance }} {{ Config.chainName }}</div>
             </div>
             <div class="flex justify-between items-center text-text">
                 <div>{{ $t('account.totalKeys') }}</div>
@@ -26,11 +26,11 @@
             </div>
             <div class="flex justify-between items-center text-text">
                 <div>{{ $t('account.earnings') }}</div>
-                <div>{{ earnings }} HAH</div>
+                <div>{{ earnings }} {{ Config.chainName }}</div>
             </div>
             <div class="flex justify-between items-center text-text">
                 <div>{{ $t('account.spend') }}</div>
-                <div>{{ spend }} HAH</div>
+                <div>{{ spend }} {{ Config.chainName }}</div>
             </div>
         </div>
 
