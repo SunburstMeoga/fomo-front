@@ -9,7 +9,8 @@ export default {
         success: '成功',
         copySuccess: '復製成功',
         confirm: '確認',
-        cancel: '取消'
+        cancel: '取消',
+        fail: '請重試'
     },
     account: {
         infor: '賬戶信息',

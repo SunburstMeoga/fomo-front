@@ -9,7 +9,8 @@ export default {
         success: '成功',
         copySuccess: 'コピーに成功しました',
         confirm: '確認',
-        cancel: 'キャンセル'
+        cancel: 'キャンセル',
+        fail: '再試行してください'
     },
     account: {
         infor: 'アカウント情報',

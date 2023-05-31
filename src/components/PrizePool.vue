@@ -127,8 +127,6 @@ export default {
         },
         countDown(endTimeStamp) {
             var nowTimeStamp = new Date().getTime()
-            console.log('nowTimeStamp', nowTimeStamp)
-            console.log('endTimeStamp', endTimeStamp)
 
             var time = {}
             if (endTimeStamp > nowTimeStamp) {

@@ -9,7 +9,8 @@ export default {
         success: '成功',
         copySuccess: '复制成功',
         confirm: '确认',
-        cancel: '取消'
+        cancel: '取消',
+        fail: '请重试'
     },
     account: {
         infor: '账户信息',

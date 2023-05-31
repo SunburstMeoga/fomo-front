@@ -91,6 +91,7 @@ export default {
         toSend() {
             Toast.loading({
                 forbidClick: true,
+                duration: 0
             });
             this.$bus.$emit('buySuccess')
             // return
@@ -106,14 +107,13 @@ export default {
             })
                 .on('confirmation', (confirmationNumber, receipt) => {
                     console.log(confirmationNumber, receipt)
-                    Toast('Success')
+                    Toast(this.$t('word.success'))
                     this.keyNumber = 1
                     this.getEthByKey(this.keyNumber)
-
                 })
                 .on('error', (error) => {
                     console.log(error)
-                    Toast.fail('Fail')
+                    Toast.fail(this.$t('word.fail'))
                 })
         }
     }

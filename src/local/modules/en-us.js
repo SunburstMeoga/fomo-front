@@ -9,7 +9,8 @@ export default {
         success: 'Success',
         copySuccess: 'Copy Success',
         confirm: 'Confirm',
-        cancel: 'Cancel'
+        cancel: 'Cancel',
+        fail: 'Please try again'
     },
     account: {
         infor: 'Account Information',
