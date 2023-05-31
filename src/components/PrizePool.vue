@@ -11,9 +11,9 @@
                 <div class='mb-1 sm:text-xl text-primary font-bold'>
                     {{ countTime }}
                 </div>
-                <div class='w-full h-0.5 bg-barWhite mb-2'>
+                <!-- <div class='w-full h-0.5 bg-barWhite mb-2'>
                     <div class='bg-primary py-px' :style="{ width: barWidth }"></div>
-                </div>
+                </div> -->
                 <div class="sm:mt-10">
                     <div class='flex justify-between text-text mb-2 sm:mb-2' v-for='(item, index) in roundList'
                         :key='index'>
@@ -51,6 +51,7 @@
 import { config } from '../const/config'
 import { addressFilter } from '@/utils/format'
 import { Toast } from 'vant'
+import { log } from 'three'
 
 
 export default {
@@ -59,7 +60,8 @@ export default {
             currentRound: '-',
             timer: null,
             barLongPoint: 0,
-            countTime: '-'
+            countTime: '-',
+            nowTimeStamp: null
         }
     },
     computed: {
@@ -94,12 +96,15 @@ export default {
     },
     created() {
         this.$bus.$on('buySuccess', () => {
+            console.log('奖金池更新')
+            this.nowTimeStamp = new Date().getTime()
+            this.barLongPoint = 0
             this.getInfo()
         })
     },
     mounted() {
         this.getInfo()
-
+        clearInterval(this.timer)
     },
     beforeDestroy() {
         clearInterval(this.timer)
@@ -126,7 +131,6 @@ export default {
         },
         countDown(endTimeStamp) {
             var nowTimeStamp = new Date().getTime()
-
             var time = {}
             if (endTimeStamp > nowTimeStamp) {
                 var mss = endTimeStamp - nowTimeStamp
@@ -142,6 +146,9 @@ export default {
                     mss: mss
                 }
                 this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
+                if (endTimeStamp > this.nowTimeStamp) {
+                    this.barLongPoint = parseInt((nowTimeStamp - this.nowTimeStamp) / (endTimeStamp - this.nowTimeStamp) * 100)
+                }
             } else {
                 time = {
                     day: '00',
@@ -152,12 +159,9 @@ export default {
                 }
                 clearInterval(this.timer)
                 this.countTime = this.$t('round.loading')
-                this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
-
+                this.barLongPoint = 0
             }
-            // this.barLongPoint = (((time.hour * 60 * 60 + minutes * 60 + seconds) / 8640).toFixed(4)) * 100
-            this.barLongPoint = parseInt((nowTimeStamp / endTimeStamp) * 100)
-            console.log(parseInt((nowTimeStamp / endTimeStamp) * 100))
+            console.log(this.countTime)
         },
         getInfo() {
             // console.log(new this.Web3.eth.Contract(config.erc20_abi, config.con_addr))

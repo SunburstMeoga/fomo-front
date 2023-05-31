@@ -74,14 +74,21 @@ export default {
         //  购买的keys发生变化
         keysChange(e) {
             const { value } = e.target
-            console.log('检测到的变化' + value)
-            this.getEthByKey(value)
+            if (value) {
+                console.log('检测到的变化' + value)
+                this.getEthByKey(value)
+            }
         },
         getEthByKey(ethByValue) {
+            Toast.loading({
+                forbidClick: true,
+                duration: 0
+            });
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.calculateKeyPrice(ethByValue).call().then((result) => {
                 console.log('当前一个key需要', result, '个wei')
                 this.ethProportion = this.Web3.utils.fromWei(result, 'ether')
+                Toast.clear()
             })
         },
         clickTeam(index) {
@@ -97,7 +104,13 @@ export default {
             let data = web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).encodeABI()
             web3Contract.methods.calculateKeyPrice(this.keyNumber).call().then((result) => {
                 console.log('当前一个key需要', result, '个wei')
-
+                // web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).send({ from: window.ethereum.selectedAddress, value: result })
+                //     .on('confirmation', (confirmationNumber, receipt) => {
+                //         Toast.clear()
+                //         console.log(confirmationNumber, receipt)
+                //         console.log('成功')
+                //     })
+                //     .on('error', console.error);
                 this.Web3.eth.sendTransaction({
                     to: config.con_addr,
                     from: window.ethereum.selectedAddress,
@@ -105,11 +118,17 @@ export default {
                     value: result
                 })
                     .on('confirmation', (confirmationNumber, receipt) => {
-                        Toast(this.$t('word.success'))
-                        this.keyNumber = 1
-                        this.getEthByKey(this.keyNumber)
-                        this.$bus.$emit('buySuccess')
-                        Toast.close()
+                        if (confirmationNumber === 0) {
+                            this.$bus.$emit('buySuccess')
+                            this.keyNumber = 1
+                            this.getEthByKey(this.keyNumber)
+                            Toast.success(this.$t('word.success'))
+
+                            return
+                        }
+
+
+
                     })
                     .on('error', (error) => {
                         console.log(error)

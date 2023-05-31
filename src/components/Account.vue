@@ -52,7 +52,9 @@ export default {
     },
     created() {
         this.$bus.$on('buySuccess', () => {
+            console.log('account更新')
             this.getAccountInfo()
+            this.getWalletBalance(window.ethereum.selectedAddress)
         })
     },
     mounted() {
@@ -60,6 +62,21 @@ export default {
     },
     methods: {
         addressFilter,
+        getWalletBalance(address) {
+            this.Web3.eth.getBalance(address).then((res) => {
+                let walletInfo = {
+                    address: address,
+                    balance: this.Web3.utils.fromWei(res, 'ether')
+                }
+
+                localStorage.setItem('walletInfo', JSON.stringify(walletInfo))
+                localStorage.setItem('connectStatus', 'connect')
+                this.$store.commit('getWalletInfo', JSON.parse(localStorage.getItem('walletInfo')))
+                console.log('store', this.$store.state.walletInfo)
+            }).catch(err => {
+                console.log('getbalance err', err)
+            })
+        },
         getAccountInfo() {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.keyHolders(window.ethereum.selectedAddress).call().then((result) => {
