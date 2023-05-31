@@ -8,7 +8,7 @@
                 <div class="w-2/4 h-8 sm:mr-6">
                     <input type="number"
                         class="rounded-full border border-primary bg-cardBg text-center h-full w-full sm:text-text"
-                        v-model="keyNumber" @change="keysChange($event)">
+                        v-model="keyNumber" @input="keysChange($event)">
                 </div>
                 <div class="text-lg">
                     {{ numFilter(ethProportion) }} @HAH
@@ -109,7 +109,7 @@ export default {
                         this.keyNumber = 1
                         this.getEthByKey(this.keyNumber)
                         this.$bus.$emit('buySuccess')
-
+                        Toast.close()
                     })
                     .on('error', (error) => {
                         console.log(error)

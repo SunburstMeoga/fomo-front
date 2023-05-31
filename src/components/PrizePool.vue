@@ -8,7 +8,7 @@
                 <div class='text-xl font-medium sm:font-bold sm:text-3xl'>
                     {{ $t('round.drain') }}
                 </div>
-                <div class='mb-1 sm:text-xl'>
+                <div class='mb-1 sm:text-xl text-primary font-bold'>
                     {{ countTime }}
                 </div>
                 <div class='w-full h-0.5 bg-barWhite mb-2'>
@@ -94,7 +94,6 @@ export default {
     },
     created() {
         this.$bus.$on('buySuccess', () => {
-            console.log('我是奖池组件，key已经购买成功了')
             this.getInfo()
         })
     },
@@ -156,7 +155,9 @@ export default {
                 this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
 
             }
-            this.barLongPoint = (((time.hour * 60 * 60 + minutes * 60 + seconds) / mss).toFixed(4)) * 100
+            // this.barLongPoint = (((time.hour * 60 * 60 + minutes * 60 + seconds) / 8640).toFixed(4)) * 100
+            this.barLongPoint = parseInt((nowTimeStamp / endTimeStamp) * 100)
+            console.log(parseInt((nowTimeStamp / endTimeStamp) * 100))
         },
         getInfo() {
             // console.log(new this.Web3.eth.Contract(config.erc20_abi, config.con_addr))
