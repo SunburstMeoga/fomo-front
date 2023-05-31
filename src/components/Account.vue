@@ -67,13 +67,15 @@ export default {
                             this.earnings = 0
                             return
                         }
-                        this.earnings = parseInt(res) * parseInt(result) / parseInt(totalKeysSold)
+                        let earnings = parseInt(res) * parseInt(result) / parseInt(totalKeysSold)
+                        this.earnings = this.Web3.utils.fromWei(earnings.toString(), 'ether')
                         console.log('earnings:', this.earnings, res, result, totalKeysSold)
                     })
                 })
             })
             web3Contract.methods.accumulatedNewPlayerSpend(window.ethereum.selectedAddress).call().then((res) => {
-                this.spend = parseInt(res)
+                this.spend = this.Web3.utils.fromWei(res, 'ether')
+
                 console.log(typeof this.spend)
             })
         },
