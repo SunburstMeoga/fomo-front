@@ -51,7 +51,6 @@
 import { config } from '../const/config'
 import { addressFilter } from '@/utils/format'
 import { Toast } from 'vant'
-import { log } from 'three'
 
 
 export default {
@@ -96,15 +95,14 @@ export default {
     },
     created() {
         this.$bus.$on('buySuccess', () => {
-            console.log('奖金池更新')
             this.nowTimeStamp = new Date().getTime()
             this.barLongPoint = 0
+            clearInterval(this.timer)
             this.getInfo()
         })
     },
     mounted() {
         this.getInfo()
-        clearInterval(this.timer)
     },
     beforeDestroy() {
         clearInterval(this.timer)
@@ -146,9 +144,9 @@ export default {
                     mss: mss
                 }
                 this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
-                if (endTimeStamp > this.nowTimeStamp) {
-                    this.barLongPoint = parseInt((nowTimeStamp - this.nowTimeStamp) / (endTimeStamp - this.nowTimeStamp) * 100)
-                }
+                // if (endTimeStamp > this.nowTimeStamp) {
+                //     this.barLongPoint = parseInt((nowTimeStamp - this.nowTimeStamp) / (endTimeStamp - this.nowTimeStamp) * 100)
+                // }
             } else {
                 time = {
                     day: '00',
@@ -159,9 +157,11 @@ export default {
                 }
                 clearInterval(this.timer)
                 this.countTime = this.$t('round.loading')
+                this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
                 this.barLongPoint = 0
             }
-            console.log(this.countTime)
+            // console.log(this.countTime)
+
         },
         getInfo() {
             // console.log(new this.Web3.eth.Contract(config.erc20_abi, config.con_addr))

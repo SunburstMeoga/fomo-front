@@ -103,7 +103,6 @@ export default {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             let data = web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).encodeABI()
             web3Contract.methods.calculateKeyPrice(this.keyNumber).call().then((result) => {
-                console.log('当前一个key需要', result, '个wei')
                 // web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).send({ from: window.ethereum.selectedAddress, value: result })
                 //     .on('confirmation', (confirmationNumber, receipt) => {
                 //         Toast.clear()
