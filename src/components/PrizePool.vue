@@ -30,7 +30,7 @@
                                     <span class="hidden sm:block">{{ item.pcAddress }}</span>
                                 </div>
                                 <div v-if="index === 0"
-                                    class="border cursor-pointer border-text rounded rounded-2xl px-2 text-sm text-text ml-2"
+                                    class="border cursor-pointer border-text rounded-2xl px-2 text-sm text-text ml-2"
                                     @click="copyContent(item.content)">
                                     {{ $t('word.copy') }}
                                 </div>
@@ -64,6 +64,8 @@
 <script>
 import { config } from '../const/config'
 import { addressFilter } from '@/utils/format'
+import { Toast } from 'vant'
+
 
 export default {
     data() {
@@ -122,13 +124,14 @@ export default {
         copyContent(content) {
             if (!content) return
             navigator.clipboard.writeText(content).then(() => {
+
                 this.$notify({
                     title: this.$t('word.success'),
                     message: this.$t('word.copySuccess'),
                     type: 'success'
                 })
             }, () => {
-                // this.$message.error(this.$t('message.fail'));
+                this.$message.error(this.$t('message.fail'));
                 this.$notify.error({
                     title: 'Error',
                     message: error.message

@@ -40,6 +40,7 @@
 <script>
 import { addressFilter } from '@/utils/format'
 import { config } from '../const/config'
+import { Toast } from 'vant'
 
 export default {
     data() {
@@ -82,7 +83,7 @@ export default {
                     type: 'success'
                 })
             }, () => {
-                // this.$message.error(this.$t('message.fail'));
+                this.$message.error(this.$t('message.fail'));
                 this.$notify.error({
                     title: 'Error',
                     message: error.message
