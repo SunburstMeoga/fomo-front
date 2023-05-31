@@ -92,7 +92,8 @@ export default {
             Toast.loading({
                 forbidClick: true,
             });
-
+            this.$bus.$emit('buySuccess')
+            // return
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             let data = web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).encodeABI()
             // console.log('this.ethProportion', this.ethProportion)
@@ -108,6 +109,7 @@ export default {
                     Toast('Success')
                     this.keyNumber = 1
                     this.getEthByKey(this.keyNumber)
+
                 })
                 .on('error', (error) => {
                     console.log(error)

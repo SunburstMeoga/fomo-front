@@ -92,12 +92,15 @@ export default {
             return this.barLongPoint + '%'
         }
     },
+    created() {
+        this.$bus.$on('buySuccess', () => {
+            console.log('我是奖池组件，key已经购买成功了')
+            this.getInfo()
+        })
+    },
     mounted() {
         this.getInfo()
-        // this.web3.eth.getBalance(this.$store.state.currentAddress).then((res) => {
-        //     console.log('余额', this.web3.utils.fromWei(res, 'ether'))
-        //     this.roundList[2].content = ((this.web3.utils.fromWei(res, 'ether')) * 1).toFixed(4)
-        // })
+
     },
     beforeDestroy() {
         clearInterval(this.timer)

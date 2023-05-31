@@ -50,6 +50,12 @@ export default {
             spend: ''
         }
     },
+    created() {
+        this.$bus.$on('buySuccess', () => {
+            console.log('我是account组件，key已经购买成功了')
+            this.getAccountInfo()
+        })
+    },
     mounted() {
         this.getAccountInfo()
     },
