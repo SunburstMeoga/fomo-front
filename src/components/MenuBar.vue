@@ -10,10 +10,20 @@
                     class="rounded-sm bg-primary border-primary border px-2 py-1 hover:text-primary hover:border-primary hover:border hover:bg-moduleBg cursor-pointer">
                     <div class="icon iconfont icon-guizeguanli" @click="showRule" />
                 </div>
-                <div
+
+                <van-popover @select="onConfirm" v-model="showPicker" theme="dark" trigger="click" :actions="columns">
+                    <template #reference>
+                        <div
+                            class="rounded-sm bg-primary border-primary border px-2 py-1 ml-2 sm:ml-6 hover:text-primary hover:border-primary hover:border hover:bg-moduleBg cursor-pointer">
+                            <div class="icon iconfont icon-message-language" />
+                        </div>
+                    </template>
+                </van-popover>
+
+                <!-- <div
                     class="rounded-sm bg-primary border-primary border px-2 py-1 ml-2 sm:ml-6 hover:text-primary hover:border-primary hover:border hover:bg-moduleBg cursor-pointer">
                     <div class="icon iconfont icon-message-language" @click="showPicker = true" />
-                </div>
+                </div> -->
                 <div class="px-2 py-1 rounded-sm bg-primary border-primary border ml-2 sm:ml-6 hover:text-primary hover:border-primary hover:border hover:bg-moduleBg cursor-pointer"
                     @click="handleConnect()">
                     {{ $store.state.walletInfo.address && $store.state.chainId === Config.chainId ? $t('menubar.disconnect')
@@ -29,24 +39,25 @@
                 </div>
             </van-popup>
         </div>
-        <div>
+        <!-- <div>
             <van-popup v-model="showPicker" round position="bottom">
                 <van-picker show-toolbar :confirm-button-text="$t('word.confirm')" :cancel-button-text="$t('word.cancel')"
                     :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
             </van-popup>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
-import { Popup, Picker } from 'vant'
+import { Popup, Picker, Popover } from 'vant'
 import GameRule from '../components/GameRule'
 export default {
-    components: { [Popup.name]: Popup, GameRule, [Picker.name]: Picker },
+    components: { [Popup.name]: Popup, GameRule, [Picker.name]: Picker, [Popover.name]: Popover },
     data() {
         return {
             // web3: new this.Web3(window.ethereum),
-            columns: ['English', '简体中文', '繁體中文', '日本'],
+            // columns: ['English', '简体中文', '繁體中文', '日本語'],
+            columns: [{ text: 'English' }, { text: '简体中文' }, { text: '繁體中文' }, { text: '日本語' }],
             show: false,
             showPicker: false,
 
