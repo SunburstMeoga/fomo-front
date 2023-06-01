@@ -178,7 +178,6 @@ export default {
             })
             web3Contract.methods.totalKeysSold().call().then((result) => {
                 console.log('totalKeysSold:', result)
-                this.roundList[2].content = result
                 this.totalKeysSold = result
             })
             web3Contract.methods.roundCount().call().then((result) => {
