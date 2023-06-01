@@ -2,9 +2,10 @@ import abi from './abi.json'
 
 const config = {
     erc20_abi: abi,
-    rpc: 'http://192.168.3.9:8547',
-    con_addr: '0xB40c613e52678C21d47b2788c16058adcE6d4126',
-    chainId: '0x539',
+    // rpc: 'http://192.168.3.9:8547',
+    rpc: 'https://rpc-testnet.hashahead.org',
+    con_addr: '0xab5aea31344aad3fc141d9061468e82fb1f14c04',
+    chainId: '0x11623',
     chainName: 'HAH'
 }
 
