@@ -6,7 +6,7 @@
                     Key
                 </div>
                 <div class="w-2/4 h-8 sm:mr-6">
-                    <input type="number"
+                    <input type="number" oninput="if(value>2880)value=2880;if(value<1)value=1;"
                         class="rounded-full border border-primary bg-cardBg text-center h-full w-full sm:text-text"
                         v-model="keyNumber" @input="keysChange($event)">
                 </div>
@@ -145,4 +145,13 @@ export default {
 .item-clicked {
     background: #EF4444;
 }*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
 </style>

@@ -85,31 +85,7 @@ export default {
         }
     },
     computed: {
-        roundList() {
-            return [
-                {
-                    title: this.$t('round.lastBuyer'),
-                    pcAddress: '-',
-                    mobileAddress: '-',
-                    amount: '0 USD'
-                },
-                {
-                    title: this.$t('round.pot'),
-                    content: '0.00 Keys',
-                    amount: 'Total 0 Keys'
-                },
-                {
-                    title: this.$t('round.totalKeySold'),
-                    content: '0.0000 ' + this.Config.chainName,
-                    amount: '0 USD'
-                },
-                {
-                    title: this.$t('round.roundCount'),
-                    content: '0.0000 ' + this.Config.chainName,
-                    amount: '0 USD'
-                }
-            ]
-        },
+
         barWidth() {
             return this.barLongPoint + '%'
         }
@@ -194,16 +170,10 @@ export default {
             // return
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.lastBuyer().call().then((result) => {
-                // console.log('lastBuyer:', result)
                 this.lastBuyer = result
-                // this.roundList[0].mobileAddress = this.addressFilter(result)
-                // this.roundList[0].pcAddress = result
-
             })
 
             web3Contract.methods.pot().call().then((result) => {
-                // console.log('pot:', result)
-                this.roundList[1].content = this.Web3.utils.fromWei(result, 'ether') + ' ' + this.Config.chainName
                 this.pot = this.Web3.utils.fromWei(result, 'ether') + ' ' + this.Config.chainName
             })
             web3Contract.methods.totalKeysSold().call().then((result) => {
@@ -213,7 +183,6 @@ export default {
             })
             web3Contract.methods.roundCount().call().then((result) => {
                 console.log('roundCount:', result)
-                // this.roundList[3].content = result
                 this.roundCount = result
                 this.currentRound = parseInt(result) + 1
             })
@@ -221,7 +190,7 @@ export default {
                 console.log('lastBuyTimestamp:', result)
                 this.timer = setInterval(() => {
                     this.countDown(parseInt(result) * 1000)
-                }, 1000)
+                }, 2000)
             })
         }
     }
