@@ -100,6 +100,7 @@ export default {
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: this.Config.chainId }],
         })
+        this.$bus.$emit('buySuccess')
       } catch (err) {
         console.error(err)
         if (err.code === 4902) {
@@ -121,10 +122,10 @@ export default {
                 },
               ],
             });
+            this.$bus.$emit('buySuccess')
           } catch (addError) {
             console.log(addError)
           }
-
         }
       }
     },
