@@ -114,10 +114,15 @@ export default {
                 })
                     .on('receipt', (receipt) => {
                         console.log('receipt', receipt)
-                        this.$bus.$emit('buySuccess')
+
                         this.keyNumber = 1
                         this.getEthByKey(this.keyNumber)
-                        Toast.success(this.$t('word.success'))
+
+                        // this.$bus.$emit('buySuccess')
+                        setTimeout(() => {
+                            this.$bus.$emit('buySuccess')
+                            Toast.success(this.$t('word.success'))
+                        }, 3000)
                     })
                     .on('error', (error) => {
                         this.$bus.$emit('buySuccess')
