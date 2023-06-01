@@ -52,7 +52,7 @@ export default {
     },
     dialog: {
         checkNetwork: 'ネットワークを確認してください',
-        checkMessage: '現在、このページはPGChainでのみサポートされています。ネットワークの切り替えに失敗した場合は、ネットワークを手動で切り替えてください',
+        checkMessage: '現在、このページは{chainName}でのみサポートされています。ネットワークの切り替えに失敗した場合は、ネットワークを手動で切り替えてください',
         confirmButtonText: "'ウォレット'でネットワークを切り替える"
     },
 }

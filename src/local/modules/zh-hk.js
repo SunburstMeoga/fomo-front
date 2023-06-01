@@ -52,7 +52,7 @@ export default {
     },
     dialog: {
         checkNetwork: '檢查您的網路',
-        checkMessage: '目前此頁面僅在PGChain中受支援，如果切換網路失敗，請手動切換網路',
+        checkMessage: '目前此頁面僅在{chainName}中受支援，如果切換網路失敗，請手動切換網路',
         confirmButtonText: '在“錢包”中切換網络'
     },
 }

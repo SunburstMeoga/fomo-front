@@ -52,7 +52,7 @@ export default {
     },
     dialog: {
         checkNetwork: 'Check your network',
-        checkMessage: "Currently this page is only supported in 'PGChain', if switching networks fails, switch networks manually",
+        checkMessage: "Currently this page is only supported in '{chainName}', if switching networks fails, switch networks manually",
         confirmButtonText: "Switch networks in 'Wallet'"
     },
 }

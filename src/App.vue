@@ -83,7 +83,7 @@ export default {
         if (chainId !== this.Config.chainId) {
           Dialog.alert({
             title: this.$t('dialog.checkNetwork'),
-            message: this.$t('dialog.checkMessage'),
+            message: this.$t('dialog.checkMessage', { chainName: this.Config.chainName }),
             confirmButtonText: this.$t('dialog.confirmButtonText'),
           }).then(() => {
             this.switchNetwork()
@@ -137,7 +137,7 @@ export default {
         if (chainChanged !== this.Config.chainId) {
           Dialog.alert({
             title: this.$t('dialog.checkNetwork'),
-            message: this.$t('dialog.checkMessage'),
+            message: this.$t('dialog.checkMessage', { chainName: this.Config.chainName }),
             confirmButtonText: this.$t('dialog.confirmButtonText'),
           }).then(() => {
             this.switchNetwork()
