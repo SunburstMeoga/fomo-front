@@ -95,6 +95,8 @@ export default {
     },
     created() {
         this.$bus.$on('buySuccess', () => {
+            console.log('$bus')
+
             this.nowTimeStamp = new Date().getTime()
             this.barLongPoint = 0
             clearInterval(this.timer)

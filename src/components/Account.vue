@@ -52,6 +52,7 @@ export default {
     },
     created() {
         this.$bus.$on('buySuccess', () => {
+            console.log('$bus')
             this.getAccountInfo()
             this.getWalletBalance(window.ethereum.selectedAddress)
         })

@@ -106,21 +106,14 @@ export default {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             let data = web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).encodeABI()
             web3Contract.methods.calculateKeyPrice(this.keyNumber).call().then((result) => {
-                // web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).send({ from: window.ethereum.selectedAddress, value: result })
-                //     .on('confirmation', (confirmationNumber, receipt) => {
-                //         Toast.clear()
-                //         console.log(confirmationNumber, receipt)
-                //         console.log('成功')
-                //     })
-                //     .on('error', console.error);
                 this.Web3.eth.sendTransaction({
                     to: config.con_addr,
                     from: window.ethereum.selectedAddress,
                     data: data,
                     value: result
                 })
-                    .on('receipt', (receipt) => {
-                        conosole.log('receipt', receipt)
+                    .on('receipt', function (receipt) {
+                        console.log('receipt', receipt)
                         this.$bus.$emit('buySuccess')
                         this.keyNumber = 1
                         this.getEthByKey(this.keyNumber)
@@ -131,7 +124,6 @@ export default {
                         Toast.fail(this.$t('word.fail'))
                     })
             })
-
         }
     }
 }
