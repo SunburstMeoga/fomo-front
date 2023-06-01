@@ -78,7 +78,7 @@ export default {
         onConfirm(value, index) {
             console.log(`当前值：${value}, 当前索引：${index}`);
             switch (index) {
-                case '2': this.$i18n.locale = 'en-us'
+                case 0: this.$i18n.locale = 'en-us'
                     break
                 case 1: this.$i18n.locale = 'zh-cn'
                     break

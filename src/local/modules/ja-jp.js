@@ -1,6 +1,6 @@
 export default {
     menubar: {
-        connect: 'ウォレットに接続',
+        connect: '繋ぐ',
         disconnect: '「切断」'
     },
     word: {

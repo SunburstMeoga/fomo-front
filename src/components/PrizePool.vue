@@ -15,30 +15,47 @@
                     <div class='bg-primary py-px' :style="{ width: barWidth }"></div>
                 </div> -->
                 <div class="sm:mt-2">
-                    <div class='flex justify-between text-text mb-2 sm:mb-2' v-for='(item, index) in roundList'
-                        :key='index'>
+                    <div class='flex justify-between text-text mb-2 sm:mb-2'>
                         <div class='text-sm sm:text-lg'>
-                            {{ item.title }}
+                            {{ $t('round.lastBuyer') }}
                         </div>
                         <div class='flex flex-col items-end'>
                             <div class='text-sm flex justify-start items-center sm:text-lg'>
-                                <div v-if="index !== 0">
-                                    {{ item.content }}
+                                <div class="hidden sm:block">
+                                    {{ lastBuyer }}
                                 </div>
-                                <div v-else>
-                                    <span class="sm:hidden">{{ item.mobileAddress }}</span>
-                                    <span class="hidden sm:block">{{ item.pcAddress }}</span>
+                                <div class="sm:hidden">
+                                    {{ addressFilter(lastBuyer) }}
                                 </div>
-                                <div v-if="index === 0"
-                                    class="border cursor-pointer border-text rounded-2xl px-2 text-sm text-text ml-2"
-                                    @click="copyContent(item.content)">
+                                <div class="border cursor-pointer border-text rounded-2xl px-2 text-sm text-text ml-2"
+                                    @click="copyContent(lastBuyer)">
                                     {{ $t('word.copy') }}
                                 </div>
                             </div>
-                            <!-- <div class='text-xs sm:text-sm'>
-                                {{ item.amount }}
-                            </div> -->
-
+                        </div>
+                    </div>
+                    <div class='flex justify-between text-text mb-2 sm:mb-2'>
+                        <div class='text-sm sm:text-lg'>
+                            {{ $t('round.pot') }}
+                        </div>
+                        <div class='flex flex-col items-end'>
+                            {{ pot }} {{ Config.chainName }}
+                        </div>
+                    </div>
+                    <div class='flex justify-between text-text mb-2 sm:mb-2'>
+                        <div class='text-sm sm:text-lg'>
+                            {{ $t('round.totalKeySold') }}
+                        </div>
+                        <div class='flex flex-col items-end'>
+                            {{ totalKeysSold }}
+                        </div>
+                    </div>
+                    <div class='flex justify-between text-text mb-2 sm:mb-2'>
+                        <div class='text-sm sm:text-lg'>
+                            {{ $t('round.roundCount') }}
+                        </div>
+                        <div class='flex flex-col items-end'>
+                            {{ roundCount }}
                         </div>
                     </div>
                 </div>
@@ -60,7 +77,11 @@ export default {
             timer: null,
             barLongPoint: 0,
             countTime: '-',
-            nowTimeStamp: null
+            nowTimeStamp: null,
+            lastBuyer: '',
+            pot: '',
+            totalKeysSold: '',
+            roundCount: ''
         }
     },
     computed: {
@@ -173,10 +194,28 @@ export default {
             // return
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.lastBuyer().call().then((result) => {
-                console.log('lastBuyer:', result)
-                this.roundList[0].mobileAddress = this.addressFilter(result)
-                this.roundList[0].pcAddress = result
+                // console.log('lastBuyer:', result)
+                this.lastBuyer = result
+                // this.roundList[0].mobileAddress = this.addressFilter(result)
+                // this.roundList[0].pcAddress = result
 
+            })
+
+            web3Contract.methods.pot().call().then((result) => {
+                // console.log('pot:', result)
+                this.roundList[1].content = this.Web3.utils.fromWei(result, 'ether') + ' ' + this.Config.chainName
+                this.pot = this.Web3.utils.fromWei(result, 'ether') + ' ' + this.Config.chainName
+            })
+            web3Contract.methods.totalKeysSold().call().then((result) => {
+                console.log('totalKeysSold:', result)
+                this.roundList[2].content = result
+                this.totalKeysSold = result
+            })
+            web3Contract.methods.roundCount().call().then((result) => {
+                console.log('roundCount:', result)
+                // this.roundList[3].content = result
+                this.roundCount = result
+                this.currentRound = parseInt(result) + 1
             })
             web3Contract.methods.lastBuyTimestamp().call().then((result) => {
                 console.log('lastBuyTimestamp:', result)
@@ -184,22 +223,6 @@ export default {
                     this.countDown(parseInt(result) * 1000)
                 }, 1000)
             })
-            web3Contract.methods.pot().call().then((result) => {
-                console.log('pot:', result)
-                this.roundList[1].content = this.Web3.utils.fromWei(result, 'ether') + ' ' + this.Config.chainName
-
-            })
-            web3Contract.methods.totalKeysSold().call().then((result) => {
-                console.log('totalKeysSold:', result)
-                this.roundList[2].content = result
-
-            })
-            web3Contract.methods.roundCount().call().then((result) => {
-                console.log('roundCount:', result)
-                this.roundList[3].content = result
-                this.currentRound = parseInt(result) + 1
-            })
-
         }
     }
 }
