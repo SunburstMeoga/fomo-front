@@ -39,7 +39,7 @@
                             {{ $t('round.pot') }}
                         </div>
                         <div class='flex flex-col items-end'>
-                            {{ pot }} {{ Config.chainName }}
+                            {{ pot }} {{ ' ' + Config.chainName }}
                         </div>
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
@@ -174,7 +174,7 @@ export default {
             })
 
             web3Contract.methods.pot().call().then((result) => {
-                this.pot = this.Web3.utils.fromWei(result, 'ether') + ' ' + this.Config.chainName
+                this.pot = this.Web3.utils.fromWei(result, 'ether')
             })
             web3Contract.methods.totalKeysSold().call().then((result) => {
                 console.log('totalKeysSold:', result)
