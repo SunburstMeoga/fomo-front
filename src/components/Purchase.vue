@@ -120,8 +120,10 @@ export default {
                         Toast.success(this.$t('word.success'))
                     })
                     .on('error', (error) => {
-                        console.log(error)
+                        this.$bus.$emit('buySuccess')
                         Toast.fail(this.$t('word.fail'))
+                        console.log(error)
+
                     })
             })
         }
