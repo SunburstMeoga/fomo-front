@@ -112,7 +112,7 @@ export default {
                     data: data,
                     value: result
                 })
-                    .on('receipt', function (receipt) {
+                    .on('receipt', (receipt) => {
                         console.log('receipt', receipt)
                         this.$bus.$emit('buySuccess')
                         this.keyNumber = 1
