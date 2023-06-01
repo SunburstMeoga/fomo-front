@@ -116,18 +116,12 @@ export default {
                     data: data,
                     value: result
                 })
-                    .on('confirmation', (confirmationNumber, receipt) => {
-                        if (confirmationNumber === 0) {
-                            this.$bus.$emit('buySuccess')
-                            this.keyNumber = 1
-                            this.getEthByKey(this.keyNumber)
-                            Toast.success(this.$t('word.success'))
-
-                            return
-                        }
-
-
-
+                    .on('receipt', (receipt) => {
+                        conosole.log('receipt', receipt)
+                        this.$bus.$emit('buySuccess')
+                        this.keyNumber = 1
+                        this.getEthByKey(this.keyNumber)
+                        Toast.success(this.$t('word.success'))
                     })
                     .on('error', (error) => {
                         console.log(error)
