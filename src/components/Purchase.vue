@@ -61,6 +61,9 @@ export default {
         }
     },
     mounted() {
+        if (this.$store.state.chainId !== this.Config.chainId) {
+            return
+        }
         this.getEthByKey(1)
     },
     methods: {

@@ -57,6 +57,9 @@ export default {
         })
     },
     mounted() {
+        if (this.$store.state.chainId !== this.Config.chainId) {
+            return
+        }
         this.getAccountInfo()
     },
     methods: {

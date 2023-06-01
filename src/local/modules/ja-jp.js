@@ -49,5 +49,10 @@ export default {
         tableTitleAir: 'Airdrop プール',
         tableTitleWinner: '勝者',
         tableTitleNextRound: '次のラウンド',
-    }
+    },
+    dialog: {
+        checkNetwork: 'ネットワークを確認してください',
+        checkMessage: '現在、このページはPGChainでのみサポートされています。ネットワークの切り替えに失敗した場合は、ネットワークを手動で切り替えてください',
+        confirmButtonText: "'ウォレット'でネットワークを切り替える"
+    },
 }

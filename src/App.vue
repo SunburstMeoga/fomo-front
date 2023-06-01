@@ -8,8 +8,12 @@
 <script>
 import * as THREE from 'three'
 import Globe from 'vanta/src/vanta.globe'
+import { Dialog } from 'vant'
+
 export default {
   name: 'App',
+  components: { [Dialog.name]: Dialog },
+
   data() {
     return {
       showContent: false,
@@ -40,6 +44,8 @@ export default {
       this.initWallet()
     }
     this.accountHasChanged()
+    this.networkHasChanged()
+
   },
   beforeDestroy() {
     clearTimeout(this.timer)
@@ -74,15 +80,15 @@ export default {
         });
         console.log('当前链id', chainId)
         this.$store.commit('getChainId', chainId)
-        // if (chainId !== this.Config.chainId) {
-        //   Dialog.alert({
-        //     title: this.$t('dialog.checkNetwork'),
-        //     message: this.$t('dialog.checkMessage'),
-        //     confirmButtonText: this.$t('dialog.confirmButtonText'),
-        //   }).then(() => {
-        //     this.switchNetwork()
-        //   });
-        // }
+        if (chainId !== this.Config.chainId) {
+          Dialog.alert({
+            title: this.$t('dialog.checkNetwork'),
+            message: this.$t('dialog.checkMessage'),
+            confirmButtonText: this.$t('dialog.confirmButtonText'),
+          }).then(() => {
+            this.switchNetwork()
+          });
+        }
         this.switchNetwork()
       } catch (err) {
         console.error(err);
@@ -103,8 +109,8 @@ export default {
               params: [
                 {
                   chainId: this.Config.chainId,
-                  chainName: 'Hash Ahead Testnet',
-                  rpcUrls: ['https://rpc-testnet.hashahead.org'],
+                  chainName: 'PGChain',
+                  rpcUrls: [this.Config.rpc],
                   iconUrls: ['https://testnet.hashahead.org/logo.png'],
                   blockExplorerUrls: ['https://testnet.hashahead.org/'],
                   nativeCurrency: {
@@ -128,14 +134,14 @@ export default {
         this.$store.commit('getChainId', chainChanged)
 
         if (chainChanged !== this.Config.chainId) {
-          // Dialog.alert({
-          //   title: this.$t('dialog.checkNetwork'),
-          //   message: this.$t('dialog.checkMessage'),
-          //   confirmButtonText: this.$t('dialog.confirmButtonText'),
-          // }).then(() => {
-          //   this.switchNetwork()
-          // });
-          this.switchNetwork()
+          Dialog.alert({
+            title: this.$t('dialog.checkNetwork'),
+            message: this.$t('dialog.checkMessage'),
+            confirmButtonText: this.$t('dialog.confirmButtonText'),
+          }).then(() => {
+            this.switchNetwork()
+          });
+          // this.switchNetwork()
 
         }
       })

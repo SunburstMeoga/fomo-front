@@ -49,5 +49,10 @@ export default {
         tableTitleAir: 'Airdrop Pool',
         tableTitleWinner: 'Winner',
         tableTitleNextRound: 'Next Round',
-    }
+    },
+    dialog: {
+        checkNetwork: 'Check your network',
+        checkMessage: "Currently this page is only supported in 'PGChain', if switching networks fails, switch networks manually",
+        confirmButtonText: "Switch networks in 'Wallet'"
+    },
 }

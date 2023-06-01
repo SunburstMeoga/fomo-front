@@ -16,7 +16,8 @@
                 </div>
                 <div class="px-2 py-1 rounded-sm bg-primary border-primary border ml-2 sm:ml-6 hover:text-primary hover:border-primary hover:border hover:bg-moduleBg cursor-pointer"
                     @click="handleConnect()">
-                    {{ $store.state.walletInfo.address && $store.state.chainId === '0x11623' ? $t('menubar.disconnect') :
+                    {{ $store.state.walletInfo.address && $store.state.chainId === Config.chainId ? $t('menubar.disconnect')
+                        :
                         $t('menubar.connect') }}
                 </div>
             </div>

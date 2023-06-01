@@ -49,5 +49,10 @@ export default {
         tableTitleAir: '空投池',
         tableTitleWinner: '胜利者',
         tableTitleNextRound: '下一轮',
-    }
+    },
+    dialog: {
+        checkNetwork: '检查您的网络',
+        checkMessage: '目前此页面仅在PGChain中受支持，如果切换网络失败，请手动切换网络',
+        confirmButtonText: '在“钱包”中切换网络'
+    },
 }
