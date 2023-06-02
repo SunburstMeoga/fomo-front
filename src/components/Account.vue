@@ -120,7 +120,7 @@ export default {
                             this.earnings = 0
                             return
                         }
-                        let earnings = parseInt(res) * parseInt(result) / parseInt(totalKeysSold)
+                        let earnings = BigInt(res) * BigInt(result) / BigInt(totalKeysSold)
                         this.earnings = this.Web3.utils.fromWei(earnings.toString(), 'ether')
                         console.log('earnings:', this.earnings, res, result, totalKeysSold)
                     })

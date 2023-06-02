@@ -10,7 +10,6 @@
                 <p>
                     {{ $t('rules.purchaseRuleTwo', { chainName: Config.chainName }) }}
                 </p>
-                <br>
 
                 <table width="100%" align="center" style="border: 1px #ffffff solid">
                     <tbody>
@@ -40,7 +39,6 @@
                 <p>
                     {{ $t('rules.purchaseRuleFour') }}
                 </p>
-                <br>
                 <table width="100%" align="center" style="border: 1px #ffffff solid">
                     <tbody>
                         <tr>
