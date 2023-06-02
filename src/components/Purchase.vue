@@ -6,7 +6,7 @@
                     Key
                 </div>
                 <div class="w-2/4 h-8 sm:mr-6">
-                    <input type="number" oninput="if(value>2880)value=2880;if(value<1)value=1;"
+                    <input type="number"
                         class="rounded-full border border-primary bg-cardBg text-center h-full w-full sm:text-text"
                         v-model="keyNumber" @input="keysChange($event)">
                 </div>
@@ -52,7 +52,7 @@ export default {
         //  购买的keys发生变化
         keysChange(e) {
             const { value } = e.target
-            if (value) {
+            if (value && value >= 1 && value <= 2880) {
                 console.log('检测到的变化' + value)
                 this.getEthByKey(value)
             }
