@@ -47,10 +47,13 @@ export default {
         return {
             keys: '',
             earnings: '',
-            spend: ''
+            spend: '',
+            websock: null
+
         }
     },
     created() {
+        this.initWebSocket();
         this.$bus.$on('buySuccess', () => {
             console.log('$bus')
             this.getAccountInfo()
@@ -63,8 +66,33 @@ export default {
         }
         this.getAccountInfo()
     },
+    destroyed: function () {
+        this.websock.close();
+    },
     methods: {
         addressFilter,
+        initWebSocket() {
+            let url = 'wss://app.dexduel.com/ws/'
+            console.log(url);
+            this.websock = new WebSocket(url);
+            this.websock.onerror = this.websocketOnerror;
+            this.websock.onmessage = this.websocketOnmessage;
+            this.websock.onclose = this.websocketOnclose;
+        },
+
+        websocketOnerror(e) {
+            console.log("WebSocket Connect Error", e);
+            // this.reconnect();
+        },
+        websocketOnmessage(e) {
+            console.log("-----Message-------", e);
+            console.log('websocket data')
+            this.getAccountInfo()
+            this.getWalletBalance(window.ethereum.selectedAddress)
+        },
+        websocketOnclose(e) {
+            console.log("connection closed (" + e.code + ")");
+        },
         getWalletBalance(address) {
             this.Web3.eth.getBalance(address).then((res) => {
                 let walletInfo = {
