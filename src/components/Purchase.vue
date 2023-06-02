@@ -25,37 +25,12 @@
 </template>
 
 <script>
-// import { Loading } from 'element-ui'
 import { config } from '../const/config'
 import { Toast } from 'vant'
 
 export default {
     data() {
         return {
-            // web3: new this.Web3(window.ethereum),
-            purchaseList: [
-                {
-                    title: 'Snek',
-                    image: require('../assets/snek.png'),
-                    value: 2
-                },
-                {
-                    title: 'Whale',
-                    image: require('../assets/whale.png'),
-                    value: 0
-                },
-                {
-                    title: 'Bull',
-                    image: require('../assets/bull.png'),
-                    value: 3
-                },
-                {
-                    title: 'Bear',
-                    image: require('../assets/bear.png'),
-                    value: 1
-                }
-            ],
-            currentTeam: 0,
             keyNumber: 1,
             ethProportion: 0
         }
@@ -94,10 +69,6 @@ export default {
                 Toast.clear()
             })
         },
-        clickTeam(index) {
-            this.currentTeam = index
-            console.log('current', index)
-        },
         toSend() {
             Toast.loading({
                 forbidClick: true,
@@ -128,7 +99,6 @@ export default {
                         this.$bus.$emit('buySuccess')
                         Toast.fail(this.$t('word.fail'))
                         console.log(error)
-
                     })
             })
         }

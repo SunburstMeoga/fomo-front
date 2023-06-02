@@ -11,7 +11,8 @@
                     <div class="icon iconfont icon-guizeguanli" @click="showRule" />
                 </div>
 
-                <van-popover @select="onConfirm" v-model="showPicker" theme="dark" trigger="click" :actions="columns">
+                <van-popover @select="onConfirm" overlay v-model="showPicker" theme="dark" trigger="click"
+                    :actions="columns">
                     <template #reference>
                         <div
                             class="rounded-sm bg-primary border-primary border px-2 py-1 ml-2 sm:ml-6 hover:text-primary hover:border-primary hover:border hover:bg-moduleBg cursor-pointer">

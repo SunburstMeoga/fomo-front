@@ -189,7 +189,7 @@ export default {
                 console.log('lastBuyTimestamp:', result)
                 this.timer = setInterval(() => {
                     this.countDown(parseInt(result) * 1000)
-                }, 2000)
+                }, 1000)
             })
         }
     }
