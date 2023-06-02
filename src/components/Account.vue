@@ -48,7 +48,7 @@ export default {
             keys: '',
             earnings: '',
             spend: '',
-            websock: null
+            websocket: null
 
         }
     },
@@ -67,17 +67,17 @@ export default {
         this.getAccountInfo()
     },
     destroyed: function () {
-        this.websock.close();
+        this.websocket.close();
     },
     methods: {
         addressFilter,
         initWebSocket() {
             let url = 'wss://app.dexduel.com/ws/'
             console.log(url);
-            this.websock = new WebSocket(url);
-            this.websock.onerror = this.websocketOnerror;
-            this.websock.onmessage = this.websocketOnmessage;
-            this.websock.onclose = this.websocketOnclose;
+            this.websocket = new WebSocket(url);
+            this.websocket.onerror = this.websocketOnerror;
+            this.websocket.onmessage = this.websocketOnmessage;
+            this.websocket.onclose = this.websocketOnclose;
         },
 
         websocketOnerror(e) {

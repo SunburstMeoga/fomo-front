@@ -34,7 +34,7 @@ export default {
         return {
             keyNumber: 1,
             ethProportion: 0,
-            websock: null
+            websocket: null
         }
     },
     created() {
@@ -48,14 +48,14 @@ export default {
         this.getEthByKey(1)
     },
     destroyed: function () {
-        this.websock.close();
+        this.websocket.close();
     },
     methods: {
         initWebSocket() {
             let url = 'wss://app.dexduel.com/ws/'
             console.log(url);
-            this.websock = new WebSocket(url);
-            this.websock.onmessage = this.websocketOnmessage;
+            this.websocket = new WebSocket(url);
+            this.websocket.onmessage = this.websocketOnmessage;
         },
         websocketOnmessage(e) {
             console.log("-----Message-------", e);
@@ -116,7 +116,7 @@ export default {
                         setTimeout(() => {
                             this.$bus.$emit('buySuccess')
                             Toast.success(this.$t('word.success'))
-                            this.websock.send(JSON.stringify({ time: new Date().getTime() }))
+                            this.websocket.send(JSON.stringify({ time: new Date().getTime() }))
 
                         }, 5000)
                     })
