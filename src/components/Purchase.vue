@@ -93,7 +93,7 @@ export default {
                         setTimeout(() => {
                             this.$bus.$emit('buySuccess')
                             Toast.success(this.$t('word.success'))
-                        }, 3000)
+                        }, 5000)
                     })
                     .on('error', (error) => {
                         this.$bus.$emit('buySuccess')
