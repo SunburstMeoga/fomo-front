@@ -82,62 +82,29 @@ export default {
             pot: '',
             totalKeysSold: '',
             roundCount: '',
-            websocket: null
         }
     },
 
     computed: {
-
         barWidth() {
             return this.barLongPoint + '%'
         }
     },
-    created() {
-        this.initWebSocket();
-        this.$bus.$on('buySuccess', () => {
-            console.log('$bus')
 
-            this.nowTimeStamp = new Date().getTime()
-            this.barLongPoint = 0
-            clearInterval(this.timer)
-            this.getInfo()
-        })
-    },
     mounted() {
         if (this.$store.state.chainId !== this.Config.chainId) {
             return
         }
         this.getInfo()
+        setInterval(() => {
+            this.getInfo()
+        }, 2000);
     },
     beforeDestroy() {
         clearInterval(this.timer)
     },
-    destroyed: function () {
-        this.websocket.close();
-    },
     methods: {
-        initWebSocket() {
-            let url = 'wss://app.dexduel.com/ws/'
-            console.log(url);
-            this.websocket = new WebSocket(url);
-            this.websocket.onerror = this.websocketOnerror;
-            this.websocket.onmessage = this.websocketOnmessage;
-            this.websocket.onclose = this.websocketOnclose;
-        },
 
-        websocketOnerror(e) {
-            console.log("WebSocket Connect Error", e);
-
-            // this.reconnect();
-        },
-        websocketOnmessage(e) {
-            console.log("-----Message-------", e);
-            console.log('websocket data')
-            this.getInfo()
-        },
-        websocketOnclose(e) {
-            console.log("connection closed (" + e.code + ")");
-        },
         addressFilter,
         copyContent(content) {
             if (!content) return

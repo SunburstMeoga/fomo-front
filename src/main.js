@@ -15,7 +15,6 @@ Vue.use(Vant)
 
 Vue.prototype.Web3 = new Web3(window.ethereum)
 Vue.prototype.Config = config
-Vue.prototype.$bus = new Vue();
 
 Vue.config.productionTip = false
 

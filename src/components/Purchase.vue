@@ -34,12 +34,7 @@ export default {
         return {
             keyNumber: 1,
             ethProportion: 0,
-            websocket: null
         }
-    },
-    created() {
-        this.initWebSocket();
-
     },
     mounted() {
         if (this.$store.state.chainId !== this.Config.chainId) {
@@ -47,21 +42,7 @@ export default {
         }
         this.getEthByKey(1)
     },
-    destroyed: function () {
-        this.websocket.close();
-    },
     methods: {
-        initWebSocket() {
-            let url = 'wss://app.dexduel.com/ws/'
-            console.log(url);
-            this.websocket = new WebSocket(url);
-            this.websocket.onmessage = this.websocketOnmessage;
-        },
-        websocketOnmessage(e) {
-            console.log("-----Message-------", e);
-            console.log('websocket data')
-            this.getEthByKey(1)
-        },
         //  保留四位小数
         numFilter(value) {
             // 截取当前数据到小数点后两位
@@ -112,16 +93,12 @@ export default {
                         console.log('receipt', receipt)
                         this.keyNumber = 1
                         this.getEthByKey(this.keyNumber)
-                        // this.$bus.$emit('buySuccess')
                         setTimeout(() => {
-                            this.$bus.$emit('buySuccess')
                             Toast.success(this.$t('word.success'))
                             this.websocket.send(JSON.stringify({ time: new Date().getTime() }))
-
                         }, 5000)
                     })
                     .on('error', (error) => {
-                        this.$bus.$emit('buySuccess')
                         Toast.fail(this.$t('word.fail'))
                         console.log(error)
                     })
