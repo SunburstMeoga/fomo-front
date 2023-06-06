@@ -3,9 +3,12 @@
         <div ref="vantaRef" style="width:100%;height:100vh;position:fixed;z-index: -1;"></div>
 
         <menu-bar></menu-bar>
-        <!-- <div class="my-2">
-            <notice-bar color="#DA251D" background="#000" />
-        </div> -->
+        <div class="mt-2">
+            <module-title titleWord="推广关系"></module-title>
+            <div class="card mt-2 mr-auto ml-auto mb-4 w-11/12 sm:w-10/12">
+                <promote-relationships />
+            </div>
+        </div>
         <div class="bg-primary text-text rounded-lg mt-2 mr-auto ml-auto mb-2 w-11/12 sm:w-10/12 p-2 text-center">
             {{ $t('word.illustrate') }}
         </div>
@@ -24,6 +27,9 @@
         <div class="card mt-2 mr-auto ml-auto mb-4 w-11/12 sm:w-10/12">
             <prize-pool></prize-pool>
         </div>
+        <div class="mt-2 mr-auto ml-auto mb-4 w-11/12">
+            <share />
+        </div>
     </div>
 </template>
 
@@ -37,6 +43,9 @@ import Purchase from '../components/Purchase.vue'
 import PrizePool from '../components/PrizePool.vue'
 import Account from '../components/Account'
 import NoticeBar from '../components/NoticeBar'
+import PromoteRelationships from '@/components/PromoteRelationships'
+import Share from '@/components/Share'
+
 
 export default {
     components: {
@@ -45,7 +54,9 @@ export default {
         Purchase,
         PrizePool,
         Account,
-        NoticeBar
+        NoticeBar,
+        PromoteRelationships,
+        Share
     },
     mounted() {
         this.vantaEffect = Net({
