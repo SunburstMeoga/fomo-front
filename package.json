@@ -12,9 +12,11 @@
     "autoprefixer": "^9.8.8",
     "core-js": "^3.8.3",
     "postcss": "^8.2.2",
+    "qrcodejs2": "^0.0.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue": "^2.6.14",
-    "vue-count-to": "^1.0.13"
+    "vue-count-to": "^1.0.13",
+    "vue-qr": "^4.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

@@ -4,17 +4,24 @@
             分享
         </div>
         <van-share-sheet v-model="showShare" title="立即分享给好友" :options="options" @select="onSelect" />
+
+        <van-popup v-model="show">
+            <vue-qr :logoSrc="imageUrl" text="https://www.baidu.com" :size="200"></vue-qr>
+        </van-popup>
     </div>
 </template>
 
 <script>
-import { ShareSheet, Toast } from 'vant';
+import { ShareSheet, Toast, Popup } from 'vant';
+import vueQr from 'vue-qr'
 
 export default {
-    components: { [ShareSheet.name]: ShareSheet, [Toast.name]: Toast },
+    components: { [ShareSheet.name]: ShareSheet, [Toast.name]: Toast, [Popup.name]: Popup, vueQr, },
     data() {
         return {
             showShare: false,
+            show: false,
+            imageUrl: require("../assets/pglogo@60.png"),
             options: [
                 { name: '微信', icon: 'wechat' },
                 { name: '微博', icon: 'weibo' },
@@ -25,11 +32,16 @@ export default {
         };
     },
     methods: {
+
         onSelect(option) {
+            console.log(option)
             Toast(option.name);
+            if (option.name === '二维码') {
+                this.show = true;
+            }
             this.showShare = false;
         },
-    },
+    }
 }
 </script>
 
