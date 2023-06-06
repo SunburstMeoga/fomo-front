@@ -68,9 +68,14 @@
 import { config } from '../const/config'
 import { addressFilter } from '@/utils/format'
 import { Toast } from 'vant'
+import CountTo from 'vue-count-to'
+
 
 
 export default {
+    components: {
+        CountTo
+    },
     data() {
         return {
             currentRound: '-',
@@ -169,6 +174,7 @@ export default {
 
             web3Contract.methods.pot().call().then((result) => {
                 this.pot = this.Web3.utils.fromWei(result, 'ether')
+                console.log('pot', this.pot)
             })
             web3Contract.methods.totalKeysSold().call().then((result) => {
                 console.log('totalKeysSold:', result)
