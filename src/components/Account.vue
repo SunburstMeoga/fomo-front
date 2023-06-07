@@ -21,16 +21,24 @@
                 <div>{{ $store.state.walletInfo.balance }} {{ Config.chainName }}</div>
             </div>
             <div class="flex justify-between items-center text-text">
-                <div>{{ $t('account.totalKeys') }}</div>
-                <div>{{ keys }} </div>
+                <div>本轮持有{{ $t('account.totalKeys') }}</div>
+                <div>{{ accountInfo.numKey }} </div>
+            </div>
+            <div class="flex justify-between items-center text-text">
+                <div>历史持有{{ $t('account.totalKeys') }}</div>
+                <div>{{ accountInfo.numKey_s }} </div>
             </div>
             <div class="flex justify-between items-center text-text">
                 <div>{{ $t('account.earnings') }}</div>
-                <div>{{ earnings }} {{ Config.chainName }}</div>
+                <div>{{ accountInfo.withd }} {{ Config.chainName }}</div>
             </div>
             <div class="flex justify-between items-center text-text">
-                <div>{{ $t('account.spend') }}</div>
-                <div>{{ spend }} {{ Config.chainName }}</div>
+                <div>本轮{{ $t('account.spend') }}</div>
+                <div>{{ accountInfo.spend }} {{ Config.chainName }}</div>
+            </div>
+            <div class="flex justify-between items-center text-text">
+                <div>历史{{ $t('account.spend') }}</div>
+                <div>{{ accountInfo.spend_s }} {{ Config.chainName }}</div>
             </div>
         </div>
 
@@ -45,9 +53,7 @@ import { Toast } from 'vant'
 export default {
     data() {
         return {
-            keys: '',
-            earnings: '',
-            spend: '',
+            accountInfo: {}
         }
     },
     mounted() {
@@ -55,9 +61,9 @@ export default {
             return
         }
         this.getAccountInfo()
-        setInterval(() => {
-            this.getAccountInfo()
-        }, 2000);
+        // setInterval(() => {
+        //     this.getAccountInfo()
+        // }, 2000);
     },
     methods: {
         addressFilter,
@@ -68,7 +74,6 @@ export default {
                     address: address,
                     balance: this.Web3.utils.fromWei(res, 'ether')
                 }
-
                 localStorage.setItem('walletInfo', JSON.stringify(walletInfo))
                 localStorage.setItem('connectStatus', 'connect')
                 this.$store.commit('getWalletInfo', JSON.parse(localStorage.getItem('walletInfo')))
@@ -79,26 +84,9 @@ export default {
         },
         getAccountInfo() {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
-            web3Contract.methods.keyHolders(window.ethereum.selectedAddress).call().then((result) => {
-                this.keys = parseInt(result)
-                console.log('keys:', typeof this.keys)
-                web3Contract.methods.totalKeysSold().call().then((totalKeysSold) => {
-                    console.log('totalKeysSold', parseInt(totalKeysSold))
-                    web3Contract.methods.accumulatedHolderPrizeShare().call().then((res) => {
-                        if (parseInt(res) * parseInt(result) === 0) {
-                            this.earnings = 0
-                            return
-                        }
-                        let earnings = BigInt(res) * BigInt(result) / BigInt(totalKeysSold)
-                        this.earnings = this.Web3.utils.fromWei(earnings.toString(), 'ether')
-                        console.log('earnings:', this.earnings, res, result, totalKeysSold)
-                    })
-                })
-            })
-            web3Contract.methods.accumulatedNewPlayerSpend(window.ethereum.selectedAddress).call().then((res) => {
-                this.spend = this.Web3.utils.fromWei(res, 'ether')
-
-                console.log(typeof this.spend)
+            web3Contract.methods.Infos(window.ethereum.selectedAddress).call().then((result) => {
+                this.accountInfo = result
+                console.log('Infos:', result)
             })
         },
         copyContent(content) {

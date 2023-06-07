@@ -44,10 +44,34 @@
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
                         <div class='text-sm sm:text-lg'>
-                            {{ $t('round.totalKeySold') }}
+                            本轮{{ $t('round.totalKeySold') }}
                         </div>
                         <div class='flex flex-col items-end'>
-                            {{ totalKeysSold }}
+                            {{ roundInfo.totalKeysSold }}
+                        </div>
+                    </div>
+                    <div class='flex justify-between text-text mb-2 sm:mb-2'>
+                        <div class='text-sm sm:text-lg'>
+                            历史售出Key总数
+                        </div>
+                        <div class='flex flex-col items-end'>
+                            {{ roundInfo.totalKeysSold_s }}
+                        </div>
+                    </div>
+                    <div class='flex justify-between text-text mb-2 sm:mb-2'>
+                        <div class='text-sm sm:text-lg'>
+                            本轮玩家购买Key的总金额
+                        </div>
+                        <div class='flex flex-col items-end'>
+                            {{ roundInfo.totalHAH }}{{ ' ' + Config.chainName }}
+                        </div>
+                    </div>
+                    <div class='flex justify-between text-text mb-2 sm:mb-2'>
+                        <div class='text-sm sm:text-lg'>
+                            历史玩家购买Key的总金额
+                        </div>
+                        <div class='flex flex-col items-end'>
+                            {{ roundInfo.totalHAH_s }} {{ ' ' + Config.chainName }}
                         </div>
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
@@ -87,6 +111,7 @@ export default {
             pot: '',
             totalKeysSold: '',
             roundCount: '',
+            roundInfo: {}
         }
     },
 
@@ -101,9 +126,9 @@ export default {
             return
         }
         this.getInfo()
-        setInterval(() => {
-            this.getInfo()
-        }, 2000);
+        // setInterval(() => {
+        //     this.getInfo()
+        // }, 2000);
     },
     beforeDestroy() {
         clearInterval(this.timer)
@@ -165,20 +190,19 @@ export default {
 
         },
         getInfo() {
-            // console.log(new this.Web3.eth.Contract(config.erc20_abi, config.con_addr))
-            // return
+            // console.log
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.lastBuyer().call().then((result) => {
                 this.lastBuyer = result
             })
 
+            web3Contract.methods.rounds().call().then((result) => {
+                console.log('回合信息', result)
+                this.roundInfo = result
+            })
             web3Contract.methods.pot().call().then((result) => {
                 this.pot = this.Web3.utils.fromWei(result, 'ether')
                 console.log('pot', this.pot)
-            })
-            web3Contract.methods.totalKeysSold().call().then((result) => {
-                console.log('totalKeysSold:', result)
-                this.totalKeysSold = result
             })
             web3Contract.methods.roundCount().call().then((result) => {
                 console.log('roundCount:', result)

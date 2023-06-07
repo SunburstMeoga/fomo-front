@@ -18,13 +18,7 @@
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "address payable",
-                "name": "_platformAddress",
-                "type": "address"
-            }
-        ],
+        "inputs": [],
         "stateMutability": "nonpayable",
         "type": "constructor"
     },
@@ -99,78 +93,27 @@
         "type": "event"
     },
     {
-        "inputs": [],
-        "name": "accumulatedHolderPrizeShare",
-        "outputs": [
+        "inputs": [
             {
                 "internalType": "uint256",
-                "name": "",
+                "name": "v",
                 "type": "uint256"
             }
         ],
-        "stateMutability": "view",
+        "name": "withdrawal",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
         "inputs": [
             {
                 "internalType": "address",
-                "name": "",
+                "name": "addr",
                 "type": "address"
             }
         ],
-        "name": "accumulatedInviterShares",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "accumulatedNewPlayerShares",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "accumulatedNewPlayerSpend",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "accumulatedPlatformShare",
+        "name": "balanceOf",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -216,6 +159,69 @@
     {
         "inputs": [
             {
+                "internalType": "address",
+                "name": "addr",
+                "type": "address"
+            }
+        ],
+        "name": "Infos",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "withd",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "spend",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "spend_s",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "numKey",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "numKey_s",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "addr",
+                "type": "address"
+            }
+        ],
+        "name": "Inviter",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "uint256",
                 "name": "",
                 "type": "uint256"
@@ -227,25 +233,6 @@
                 "internalType": "address",
                 "name": "",
                 "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "keyHolders",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -267,57 +254,6 @@
     {
         "inputs": [],
         "name": "lastBuyTimestamp",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "x",
-                "type": "uint256"
-            }
-        ],
-        "name": "log10",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "pure",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "x",
-                "type": "uint256"
-            }
-        ],
-        "name": "log2",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "y",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "pure",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "MAX_KEYS_PER_PURCHASE",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -382,11 +318,26 @@
     },
     {
         "inputs": [],
-        "name": "TIMER_INCREMENT",
+        "name": "rounds",
         "outputs": [
             {
                 "internalType": "uint256",
-                "name": "",
+                "name": "totalKeysSold",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "totalKeysSold_s",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "totalHAH",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "totalHAH_s",
                 "type": "uint256"
             }
         ],
@@ -395,7 +346,7 @@
     },
     {
         "inputs": [],
-        "name": "totalKeysSold",
+        "name": "TIMER_INCREMENT",
         "outputs": [
             {
                 "internalType": "uint256",
