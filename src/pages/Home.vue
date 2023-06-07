@@ -15,7 +15,7 @@
         <div v-if="$store.state.walletInfo.address && $store.state.chainId === Config.chainId">
             <module-title :titleWord="$t('account.infor')"></module-title>
             <div class="card mt-2 mr-auto ml-auto mb-4 w-11/12 sm:w-10/12">
-                <account />
+                <account @handleWithdrawal="handleWithdrawal" />
             </div>
         </div>
 
@@ -30,6 +30,10 @@
         <div class="mt-2 mr-auto ml-auto mb-4 w-11/12">
             <share />
         </div>
+        <withdrawal ref="withdrawal" />
+        <!-- <div class="bg-primary py-2 px-2" @click="handleWithdrawal">
+            sdjflsjlfjlsjdfl
+        </div> -->
     </div>
 </template>
 
@@ -45,7 +49,7 @@ import Account from '../components/Account'
 import NoticeBar from '../components/NoticeBar'
 import PromoteRelationships from '@/components/PromoteRelationships'
 import Share from '@/components/Share'
-
+import Withdrawal from '@/components/Withdrawal'
 
 export default {
     components: {
@@ -56,7 +60,8 @@ export default {
         Account,
         NoticeBar,
         PromoteRelationships,
-        Share
+        Share,
+        Withdrawal
     },
     mounted() {
         this.vantaEffect = Net({
@@ -69,6 +74,16 @@ export default {
             scale: 1.00,
             scaleMobile: 1.20,
         })
+        // this.$refs.withdrawal.showWithdrawal = true
+    },
+    methods: {
+        handleWithdrawal() {
+            this.$refs.withdrawal.showWithdrawal = true
+            setTimeout(() => {
+                console.log(document.getElementById('inputId'))
+                document.getElementById('inputId').focus()
+            }, 1000)
+        }
     },
     beforeDestroy() {
         if (this.vantaEffect) {
