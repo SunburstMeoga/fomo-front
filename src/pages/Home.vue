@@ -9,7 +9,7 @@
                 <promote-relationships />
             </div>
         </div>
-        <div class="bg-primary text-text rounded-lg mt-2 mr-auto ml-auto mb-2 w-11/12 sm:w-10/12 p-2 text-center">
+        <div class="bg-primary text-text italic  rounded-lg mt-2 mr-auto ml-auto mb-2 w-11/12 sm:w-10/12 p-2 text-center">
             {{ $t('word.illustrate') }}
         </div>
         <div v-if="$store.state.walletInfo.address && $store.state.chainId === Config.chainId">

@@ -28,10 +28,7 @@
                 <div>历史持有{{ $t('account.totalKeys') }}</div>
                 <div>{{ accountInfo.numKey_s }} </div>
             </div>
-            <div class="flex justify-between items-center text-text">
-                <div>{{ $t('account.earnings') }}</div>
-                <div>{{ accountInfo.withd }} {{ Config.chainName }}</div>
-            </div>
+
             <div class="flex justify-between items-center text-text">
                 <div>本轮{{ $t('account.spend') }}</div>
                 <div>{{ accountInfo.spend }} {{ Config.chainName }}</div>
@@ -39,6 +36,14 @@
             <div class="flex justify-between items-center text-text">
                 <div>历史{{ $t('account.spend') }}</div>
                 <div>{{ accountInfo.spend_s }} {{ Config.chainName }}</div>
+            </div>
+            <div class="flex justify-between items-center text-text">
+                <div>预估{{ $t('account.earnings') }}</div>
+                <div>{{ accountInfo.expectIncome }} {{ Config.chainName }}</div>
+            </div>
+            <div class="flex justify-between items-center text-text">
+                <div>可提现{{ $t('account.earnings') }}</div>
+                <div>{{ accountInfo.withd }} {{ Config.chainName }}</div>
             </div>
         </div>
 
