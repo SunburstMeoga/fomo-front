@@ -59,8 +59,8 @@ export default {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.Inviter(localStorage.getItem('referrer') ? localStorage.getItem('referrer') : window.ethereum.selectedAddress).call().then((result) => {
                 this.inviterInfo = result
-                this.referralsNumber = Number(result.Number)
-                this.referralsEarnings = Number(result.Amount)
+                this.referralsNumber = Number(result.number)
+                this.referralsEarnings = Number(result.amount)
                 console.log(result)
             })
         }
