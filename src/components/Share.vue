@@ -48,7 +48,7 @@ export default {
         };
     },
     mounted() {
-        this.pageUrl = window.location.href + '?referrer=' + window.ethereum.selectedAddress
+        this.pageUrl = 'https://app.dexduel.com/?referrer=' + window.ethereum.selectedAddress
     },
     methods: {
         toTelegram, toQQ, toWhatsApp, toWechat,
