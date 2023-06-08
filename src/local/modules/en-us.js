@@ -12,13 +12,27 @@ export default {
         cancel: 'Cancel',
         fail: 'Please try again'
     },
+    popularize: {
+        referrer: 'Referrer',
+        referrerAddress: 'Recommended address',
+        referrerNumber: 'Referred',
+        people: 'people',
+        totalEarning: 'co-earning',
+    },
     account: {
         infor: 'Account Information',
         address: 'Address',
         balance: 'Balance',
         totalKeys: 'Total Keys',
         earnings: 'Earnings',
-        spend: 'Spend'
+        spend: 'Spend',
+        hold: 'Hold',
+        epicycle: 'This Round',
+        history: 'History',
+        estimate: 'Estimate',
+        withdrawn: 'Withdrawn',
+        withdrawable: 'Withdrawable',
+        withdrawals: 'Withdrawals'
     },
     purchase: {
         title: 'Purchase',
@@ -28,12 +42,13 @@ export default {
     round: {
         title: 'Round Information',
         roundNumber: 'Round',
-        drain: 'Contract will drain in',
+        drain: 'The game will end at the following time',
         loading: 'Loading...',
         lastBuyer: 'Last Buyer',
         pot: 'Pot',
         totalKeySold: 'Total Key Sold',
-        roundCount: 'Round Count'
+        roundCount: 'Round Count',
+        totalAmount: 'The Total Amount',
     },
     rules: {
         noPrompts: "Don't prompt again",
@@ -55,4 +70,8 @@ export default {
         checkMessage: "Currently this page is only supported in '{chainName}', if switching networks fails, switch networks manually",
         confirmButtonText: "Switch networks in 'Wallet'"
     },
+    share: {
+        share: 'Share',
+        save: 'Save',
+    }
 }

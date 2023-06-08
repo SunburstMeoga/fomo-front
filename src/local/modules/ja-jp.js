@@ -1,7 +1,7 @@
 export default {
     menubar: {
         connect: '繋ぐ',
-        disconnect: '「切断」'
+        disconnect: '切断'
     },
     word: {
         illustrate: '「このゲームで負ける唯一の方法は、プレイをやめることです」',
@@ -12,13 +12,27 @@ export default {
         cancel: 'キャンセル',
         fail: '再試行してください'
     },
+    popularize: {
+        referrer: 'リファラー',
+        referrerAddress: '推奨アドレス',
+        referrerNumber: 'このアドレスは推奨されています',
+        people: '人',
+        totalEarning: '共同収益',
+    },
     account: {
         infor: 'アカウント情報',
         address: '住所',
         balance: 'バランス',
         totalKeys: 'Keyの総数',
         earnings: '収益',
-        spend: '「使う」'
+        spend: '「使う」',
+        hold: 'ホールド',
+        epicycle: 'このラウンド',
+        history: '歴史',
+        estimate: '見積もり',
+        withdrawn: '撤回',
+        withdrawable: '出金可能',
+        withdrawals: '引き出し'
     },
     purchase: {
         title: '「購入」',
@@ -28,12 +42,13 @@ export default {
     round: {
         title: '「ラウンドインフォメーション」',
         roundNumber: 'ラウンド',
-        drain: '契約はドレインされます',
+        drain: 'ゲームは以下の時間に終了します',
         loading: '読み込み中...',
         lastBuyer: '最後の購入者',
         pot: '「ポット」',
         totalKeySold: '販売されたキーの合計',
-        roundCount: 'ラウンド数'
+        roundCount: 'ラウンド数',
+        totalAmount: '総額',
     },
     rules: {
         noPrompts: 'これ以上プロンプトは表示されません',
@@ -55,4 +70,8 @@ export default {
         checkMessage: '現在、このページは{chainName}でのみサポートされています。ネットワークの切り替えに失敗した場合は、ネットワークを手動で切り替えてください',
         confirmButtonText: "'ウォレット'でネットワークを切り替える"
     },
+    share: {
+        share: '共有',
+        save: 'ローカルに保存',
+    }
 }

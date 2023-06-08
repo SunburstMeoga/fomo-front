@@ -8,7 +8,7 @@ const store = new Vuex.Store({
         currentAddress: 0,
         walletInfo: {},
         chainId: '',
-
+        referrer: '',
     },
     mutations: {
         getCurrentAddress(state, newval) {
@@ -19,6 +19,9 @@ const store = new Vuex.Store({
         },
         getChainId(state, newVal) {
             state.chainId = newVal
+        },
+        getReferrer(state, newVal) {
+            state.referrer = newVal
         }
     }
 })

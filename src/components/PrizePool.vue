@@ -44,7 +44,7 @@
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
                         <div class='text-sm sm:text-lg'>
-                            本轮{{ $t('round.totalKeySold') }}
+                            {{ $t('account.epicycle') }}{{ $t('round.totalKeySold') }}
                         </div>
                         <div class='flex flex-col items-end'>
                             {{ roundInfo.totalKeysSold }}
@@ -52,7 +52,7 @@
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
                         <div class='text-sm sm:text-lg'>
-                            历史售出Key总数
+                            {{ $t('account.history') }}{{ $t('round.totalKeySold') }}
                         </div>
                         <div class='flex flex-col items-end'>
                             {{ roundInfo.totalKeysSold_s }}
@@ -60,7 +60,7 @@
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
                         <div class='text-sm sm:text-lg'>
-                            本轮玩家购买Key的总金额
+                            {{ $t('account.epicycle') }}{{ $t('round.totalAmount') }}
                         </div>
                         <div class='flex flex-col items-end'>
                             {{ roundInfo.totalHAH }}{{ ' ' + Config.chainName }}
@@ -68,7 +68,7 @@
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
                         <div class='text-sm sm:text-lg'>
-                            历史玩家购买Key的总金额
+                            {{ $t('account.history') }}{{ $t('round.totalAmount') }}
                         </div>
                         <div class='flex flex-col items-end'>
                             {{ roundInfo.totalHAH_s }} {{ ' ' + Config.chainName }}
@@ -126,9 +126,9 @@ export default {
             return
         }
         this.getInfo()
-        // setInterval(() => {
-        //     this.getInfo()
-        // }, 2000);
+        setInterval(() => {
+            this.getInfo()
+        }, 2000);
     },
     beforeDestroy() {
         clearInterval(this.timer)

@@ -22,40 +22,40 @@
                     <div>{{ $store.state.walletInfo.balance }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
-                    <div>本轮持有{{ $t('account.totalKeys') }}</div>
+                    <div>{{ $t('account.epicycle') }}{{ $t('account.hold') }}{{ $t('account.totalKeys') }}</div>
                     <div>{{ accountInfo.numKey }} </div>
                 </div>
                 <div class="flex justify-between items-center text-text">
-                    <div>历史持有{{ $t('account.totalKeys') }}</div>
+                    <div>{{ $t('account.history') }}{{ $t('account.hold') }}{{ $t('account.totalKeys') }}</div>
                     <div>{{ accountInfo.numKey_s }} </div>
                 </div>
 
                 <div class="flex justify-between items-center text-text">
-                    <div>本轮{{ $t('account.spend') }}</div>
+                    <div>{{ $t('account.epicycle') }}{{ $t('account.spend') }}</div>
                     <div>{{ accountInfo.spend }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
-                    <div>历史{{ $t('account.spend') }}</div>
+                    <div>{{ $t('account.history') }}{{ $t('account.spend') }}</div>
                     <div>{{ accountInfo.spend_s }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
-                    <div>预估{{ $t('account.earnings') }}</div>
+                    <div>{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
                     <div>{{ accountInfo.expectIncome }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
-                    <div>已提现{{ $t('account.earnings') }}</div>
+                    <div>{{ $t('account.withdrawn') }}{{ $t('account.earnings') }}</div>
                     <div>{{ accountInfo.withd }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text mb-2">
-                    <div>可提现{{ $t('account.earnings') }}</div>
+                    <div>{{ $t('account.withdrawable') }}{{ $t('account.earnings') }}</div>
                     <div>{{ canWithdrawalsBalance }} {{ Config.chainName }}</div>
                 </div>
                 <div class="text-text bg-primary text-center py-2 w-full rounded-full" @click="handleWithdrawal">
-                    提现
+                    {{ $t('account.withdrawals') }}
                 </div>
             </div>
         </div>
-        
+
     </div>
 </template>
 
@@ -75,9 +75,9 @@ export default {
             return
         }
         this.getAccountInfo()
-        // setInterval(() => {
-        //     this.getAccountInfo()
-        // }, 2000);
+        setInterval(() => {
+            this.getAccountInfo()
+        }, 2000);
     },
     methods: {
         addressFilter,

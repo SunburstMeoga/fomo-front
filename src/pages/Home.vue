@@ -4,7 +4,7 @@
 
         <menu-bar></menu-bar>
         <div class="mt-2">
-            <module-title titleWord="推广关系"></module-title>
+            <module-title :titleWord="$t('popularize.referrer')"></module-title>
             <div class="card mt-2 mr-auto ml-auto mb-4 w-11/12 sm:w-10/12">
                 <promote-relationships />
             </div>

@@ -15,10 +15,16 @@ export function toTelegram(url, title) {
     window.open(`https://t.me/share?url=${url}&text=${title}`)
 }
 
-export function toWhatsApp(url, title) {
-    url = encodeURIComponent(url)
-    title = encodeURIComponent(title)
-    window.open(`https://web.whatsapp.com/send?text=${title}&url=${url}`)
+export function toWhatsApp() {
+    let _href = "https://api.whatsapp.com/send?";
+    const text = `分享的文案`
+    const link = location.href // 分享的页面
+    _href += "text=" + text;//标题
+    _href += "&url=" + link;//链接
+    console.log('_href', _href)
+    // return
+    // window.open(`https://api.whatsapp.com/send?text=测试标题测试文案&url=https://www.baidu.com`);
+    window.open(_href, '_blank');
 }
 
 

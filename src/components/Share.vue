@@ -1,15 +1,16 @@
 <template>
     <div class="">
         <div class="rounded text-text bg-primary text-center py-2 w-full" @click="showShare = true">
-            分享
+            {{ $t('share.share') }}
         </div>
-        <van-share-sheet v-model="showShare" title="立即分享给好友" :options="options" @select="onSelect" />
+        <van-share-sheet v-model="showShare" :title="$t('share.share')" :options="options" @select="onSelect" />
 
         <van-popup v-model="show">
             <div class="flex flex-col items-center pb-3">
-                <vue-qr ref="qrData" :logoSrc="imageUrl" text="https://www.baidu.com" :size="200" class="mb-1"></vue-qr>
+                <vue-qr ref="qrData" :logoSrc="imageUrl" :text="pageUrl" :size="200" class="mb-1"></vue-qr>
                 <div class="py-1 px-2 bg-primary text-text rounded" @click="saveImg">
-                    保存到本地相册
+                    {{ $t('share.save') }}
+
                 </div>
             </div>
         </van-popup>
@@ -40,10 +41,14 @@ export default {
                 { name: 'Copy Link', icon: 'link', type: 6 },]
 
             ],
-            shareUrl: 'https://www.baidu.com',
+            shareUrl: 'https://api.whatsapp.com/send?',
             shareTitle: '分享链接',
+            pageUrl: '',
             // bigPoster: ''
         };
+    },
+    mounted() {
+        this.pageUrl = window.location.href + '?referrer=' + window.ethereum.selectedAddress
     },
     methods: {
         toTelegram, toQQ, toWhatsApp, toWechat,
@@ -76,7 +81,7 @@ export default {
             switch (option.type) {
                 case 1: this.toTelegram(this.shareUrl, this.shareTitle)
                     break;
-                case 2: this.toWhatsApp(this.shareUrl, this.shareTitle)
+                case 2: this.toWhatsApp()
                     break;
 
                 case 3: this.toWechat(this.shareUrl, this.shareTitle)

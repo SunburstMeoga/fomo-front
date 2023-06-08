@@ -21,6 +21,11 @@ export default {
     }
   },
   created() {
+    console.log(this.$route.query)
+    if (this.$route.query.referrer) {
+      console.log(this.$route.query.referrer)
+      localStorage.setItem('referrer', this.$route.query.referrer)
+    }
     this.getChainId()
     if (localStorage.getItem('locale')) {
       this.$i18n.locale = localStorage.getItem('locale')

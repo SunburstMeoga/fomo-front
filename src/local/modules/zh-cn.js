@@ -12,13 +12,27 @@ export default {
         cancel: '取消',
         fail: '请重试'
     },
+    popularize: {
+        referrer: '推荐人',
+        referrerAddress: '推荐地址',
+        referrerNumber: '该地址已推荐',
+        people: '人',
+        totalEarning: '共收益',
+    },
     account: {
         infor: '账户信息',
         address: '地址',
         balance: '余额',
         totalKeys: 'Key的总数量',
         earnings: '收益',
-        spend: '花费'
+        spend: '花费',
+        hold: '持有',
+        epicycle: '本轮',
+        history: '历史',
+        estimate: '预估',
+        withdrawn: '已提现',
+        withdrawable: '可提现',
+        withdrawals: '提现'
     },
     purchase: {
         title: '购买',
@@ -28,12 +42,13 @@ export default {
     round: {
         title: '回合信息',
         roundNumber: '当前回合数',
-        drain: '合约将于以下时间后流失',
+        drain: '本轮游戏将于以下时间结束',
         loading: '正在加载...',
         lastBuyer: '最后一个买家',
         pot: '合约池',
         totalKeySold: '售出的Key总数',
-        roundCount: '已完结的回合次数'
+        roundCount: '已完结的回合次数',
+        totalAmount: '玩家购买Key的总金额',
     },
     rules: {
         noPrompts: '不再提示',
@@ -55,4 +70,8 @@ export default {
         checkMessage: '目前此页面仅在{chainName}中受支持，如果切换网络失败，请手动切换网络',
         confirmButtonText: '在“钱包”中切换网络'
     },
+    share: {
+        share: '分享',
+        save: '保存到本地',
+    }
 }
