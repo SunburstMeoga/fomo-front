@@ -8,7 +8,7 @@
         <van-popup v-model="show">
             <div class="flex flex-col items-center pb-3">
                 <vue-qr ref="qrData" :logoSrc="imageUrl" text="https://www.baidu.com" :size="200" class="mb-1"></vue-qr>
-                <div class="py-1 px-2 bg-primary text-text rounded" @click="downQr">
+                <div class="py-1 px-2 bg-primary text-text rounded" @click="saveImg">
                     保存到本地相册
                 </div>
             </div>
@@ -41,20 +41,34 @@ export default {
 
             ],
             shareUrl: 'https://www.baidu.com',
-            shareTitle: '分享链接'
+            shareTitle: '分享链接',
+            // bigPoster: ''
         };
     },
     methods: {
         toTelegram, toQQ, toWhatsApp, toWechat,
-        downQr() {
-            let name = 'PGChain推广链接';
-            let a = document.createElement("a");
-            a.style.display = "none";
-            a.download = name;
-            a.href = this.$refs.qrData.imgUrl;
-            console.log(this.$refs)
-            document.body.appendChild(a);
-            a.click();
+
+        saveImg() {
+            this.downloadIamge(this.$refs.qrData.imgUrl, "PGChain");
+        },
+        downloadIamge(imgsrc, name) {
+            // imgsrc：图片地址，name：图片名称
+            let image = new Image();
+            image.setAttribute("crossOrigin", "anonymous");
+            image.onload = function () {
+                let canvas = document.createElement("canvas");
+                canvas.width = image.width;
+                canvas.height = image.height;
+                let context = canvas.getContext("2d");
+                context.drawImage(image, 0, 0, image.width, image.height);
+                let url = canvas.toDataURL("image/png") //得到图片的base64编码数据
+                let a = document.createElement("a"); // 生成一个a元素
+                let event = new MouseEvent("click"); // 创建一个单击事件
+                a.download = name || "海报"; // 设置图片名称没有设置则为默认
+                a.href = url; // 将生成的URL设置为a.href属性
+                a.dispatchEvent(event); // 触发a的单击事件
+            };
+            image.src = imgsrc;
         },
         onSelect(option) {
             console.log(option)
