@@ -10,7 +10,8 @@ export default {
         copySuccess: '复制成功',
         confirm: '确认',
         cancel: '取消',
-        fail: '请重试'
+        fail: '请重试',
+        noBalance: '余额不足'
     },
     popularize: {
         referrer: '推荐人',

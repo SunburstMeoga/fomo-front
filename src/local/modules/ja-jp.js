@@ -10,7 +10,8 @@ export default {
         copySuccess: 'コピーに成功しました',
         confirm: '確認',
         cancel: 'キャンセル',
-        fail: '再試行してください'
+        fail: '再試行してください',
+        noBalance: 'バランス不足'
     },
     popularize: {
         referrer: 'リファラー',

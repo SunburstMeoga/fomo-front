@@ -10,7 +10,8 @@ export default {
         copySuccess: 'Copy Success',
         confirm: 'Confirm',
         cancel: 'Cancel',
-        fail: 'Please try again'
+        fail: 'Please try again',
+        noBalance: 'バランス不足'
     },
     popularize: {
         referrer: 'Referrer',

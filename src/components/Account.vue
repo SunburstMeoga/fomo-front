@@ -62,8 +62,10 @@
 <script>
 import { addressFilter } from '@/utils/format'
 import { config } from '../const/config'
+import { Toast } from 'vant'
 
 export default {
+    components: { [Toast.name]: Toast },
     data() {
         return {
             accountInfo: {},
@@ -82,6 +84,10 @@ export default {
     methods: {
         addressFilter,
         handleWithdrawal() {
+            if (this.accountInfo.withd === '0') {
+                Toast.fail(this.$t('word.noBalance'));
+                return
+            }
             this.$emit('handleWithdrawal')
         },
         getWalletBalance(address) {
