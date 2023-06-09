@@ -63,7 +63,7 @@
                             {{ $t('account.epicycle') }}{{ $t('round.totalAmount') }}
                         </div>
                         <div class='flex flex-col items-end'>
-                            {{ roundInfo.totalHAH }}{{ ' ' + Config.chainName }}
+                            {{ fromWei(roundInfo.totalHAH) }}{{ ' ' + Config.chainName }}
                         </div>
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
@@ -71,7 +71,7 @@
                             {{ $t('account.history') }}{{ $t('round.totalAmount') }}
                         </div>
                         <div class='flex flex-col items-end'>
-                            {{ roundInfo.totalHAH_s }} {{ ' ' + Config.chainName }}
+                            {{ fromWei(roundInfo.totalHAH_s) }} {{ ' ' + Config.chainName }}
                         </div>
                     </div>
                     <div class='flex justify-between text-text mb-2 sm:mb-2'>
@@ -136,6 +136,9 @@ export default {
     methods: {
 
         addressFilter,
+        fromWei(value) {
+            return this.Web3.utils.fromWei(value, 'ether')
+        },
         copyContent(content) {
             if (!content) return
             navigator.clipboard.writeText(content).then(() => {
@@ -197,20 +200,17 @@ export default {
             })
 
             web3Contract.methods.rounds().call().then((result) => {
-                console.log('回合信息', result)
+                // console.log('回合信息', result)
                 this.roundInfo = result
             })
             web3Contract.methods.pot().call().then((result) => {
                 this.pot = this.Web3.utils.fromWei(result, 'ether')
-                console.log('pot', this.pot)
             })
             web3Contract.methods.roundCount().call().then((result) => {
-                console.log('roundCount:', result)
                 this.roundCount = result
                 this.currentRound = parseInt(result) + 1
             })
             web3Contract.methods.lastBuyTimestamp().call().then((result) => {
-                console.log('lastBuyTimestamp:', result)
                 this.timer = setInterval(() => {
                     this.countDown(parseInt(result) * 1000)
                 }, 1000)

@@ -61,7 +61,6 @@ export default {
                 this.inviterInfo = result
                 this.referralsNumber = Number(result.number)
                 this.referralsEarnings = Number(result.amount)
-                console.log(result)
             })
         }
     }

@@ -32,23 +32,23 @@
 
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.epicycle') }}{{ $t('account.spend') }}</div>
-                    <div>{{ accountInfo.spend }} {{ Config.chainName }}</div>
+                    <div>{{ fromWei(accountInfo.spend) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.history') }}{{ $t('account.spend') }}</div>
-                    <div>{{ accountInfo.spend_s }} {{ Config.chainName }}</div>
+                    <div>{{ fromWei(accountInfo.spend_s) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
-                    <div>{{ accountInfo.expectIncome }} {{ Config.chainName }}</div>
+                    <div>{{ fromWei(accountInfo.expectIncome) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.withdrawn') }}{{ $t('account.earnings') }}</div>
-                    <div>{{ accountInfo.withd }} {{ Config.chainName }}</div>
+                    <div>{{ fromWei(accountInfo.withd) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text mb-2">
                     <div>{{ $t('account.withdrawable') }}{{ $t('account.earnings') }}</div>
-                    <div>{{ canWithdrawalsBalance }} {{ Config.chainName }}</div>
+                    <div>{{ fromWei(canWithdrawalsBalance) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="text-text bg-primary text-center py-2 w-full rounded-full" @click="handleWithdrawal">
                     {{ $t('account.withdrawals') }}
@@ -83,6 +83,9 @@ export default {
     },
     methods: {
         addressFilter,
+        fromWei(value) {
+            return this.Web3.utils.fromWei(value, 'ether')
+        },
         handleWithdrawal() {
             if (this.accountInfo.withd === '0') {
                 Toast.fail(this.$t('word.noBalance'));
@@ -108,11 +111,9 @@ export default {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.Infos(window.ethereum.selectedAddress).call().then((result) => {
                 this.accountInfo = result
-                console.log('Infos:', result)
             })
             web3Contract.methods.balanceOf(window.ethereum.selectedAddress).call().then((result) => {
                 this.canWithdrawalsBalance = result
-                console.log('canWithdrawalsBalance:', result)
             })
         },
         copyContent(content) {
