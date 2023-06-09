@@ -93,9 +93,7 @@ export default {
                         console.log('receipt', receipt)
                         this.keyNumber = 1
                         this.getEthByKey(this.keyNumber)
-                        setTimeout(() => {
-                            Toast.success(this.$t('word.success'))
-                        }, 2000)
+                        Toast.success(this.$t('word.success'))
                     })
                     .on('error', (error) => {
                         Toast.fail(this.$t('word.fail'))

@@ -111,7 +111,8 @@ export default {
             pot: '',
             totalKeysSold: '',
             roundCount: '',
-            roundInfo: {}
+            roundInfo: {},
+            timeStamp: ''
         }
     },
 
@@ -126,8 +127,10 @@ export default {
             return
         }
         this.getInfo()
+        this.getTime()
         setInterval(() => {
             this.getInfo()
+            this.getTime()
         }, 2000);
     },
     beforeDestroy() {
@@ -156,15 +159,14 @@ export default {
                 })
             });
         },
-        countDown(endTimeStamp) {
-            var nowTimeStamp = new Date().getTime()
+        countDown(endTimeStamp, nowTimeStamp) {
             var time = {}
             if (endTimeStamp > nowTimeStamp) {
                 var mss = endTimeStamp - nowTimeStamp
-                var days = parseInt(mss / (1000 * 60 * 60 * 24))
-                var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-                var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60))
-                var seconds = parseInt((mss % (1000 * 60)) / 1000)
+                var days = Math.floor(mss / (1000 * 60 * 60 * 24))
+                var hours = Math.floor((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+                var minutes = Math.floor((mss % (1000 * 60 * 60)) / (1000 * 60))
+                var seconds = Math.floor((mss % (1000 * 60)) / 1000)
                 time = {
                     day: days < 10 ? '0' + days : days,
                     hour: hours < 10 ? '0' + hours : hours,
@@ -173,9 +175,6 @@ export default {
                     mss: mss
                 }
                 this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
-                // if (endTimeStamp > this.nowTimeStamp) {
-                //     this.barLongPoint = parseInt((nowTimeStamp - this.nowTimeStamp) / (endTimeStamp - this.nowTimeStamp) * 100)
-                // }
             } else {
                 time = {
                     day: '00',
@@ -185,16 +184,12 @@ export default {
                     mss: '00'
                 }
                 clearInterval(this.timer)
-                this.countTime = this.$t('round.loading')
-                this.countTime = time.hour + ' : ' + time.minute + ' : ' + time.second
-                this.barLongPoint = 0
             }
-            // console.log(this.countTime)
-
         },
         getInfo() {
             // console.log
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
+
             web3Contract.methods.lastBuyer().call().then((result) => {
                 this.lastBuyer = result
             })
@@ -210,10 +205,16 @@ export default {
                 this.roundCount = result
                 this.currentRound = parseInt(result) + 1
             })
+        },
+        getTime() {
+            let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.lastBuyTimestamp().call().then((result) => {
+                clearInterval(this.timer)
                 this.timer = setInterval(() => {
-                    this.countDown(parseInt(result) * 1000)
+                    this.countDown(parseInt(result) * 1000, new Date().getTime())
                 }, 1000)
+                console.log(parseInt(result) * 1000, new Date().getTime())
+                console.log(this.countTime)
             })
         }
     }
