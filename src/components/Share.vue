@@ -93,7 +93,7 @@ export default {
                 case 5: this.show = true;
                     break;
 
-                case 6: this.copyContent()
+                case 6: this.copyContent(this.pageUrl)
             }
 
             this.showShare = false;
@@ -102,17 +102,20 @@ export default {
             if (!content) return
             console.log(content)
             navigator.clipboard.writeText(content).then(() => {
-                this.$notify({
-                    title: this.$t('word.success'),
-                    message: this.$t('word.copySuccess'),
-                    type: 'success'
-                })
+                // this.$notify({
+                //     title: this.$t('word.success'),
+                //     message: this.$t('word.copySuccess'),
+                //     type: 'success'
+                // })
+                Toast.success(this.$t('word.copySuccess'))
             }, () => {
-                this.$message.error(this.$t('message.fail'));
-                this.$notify.error({
-                    title: 'Error',
-                    message: error.message
-                })
+                // this.$message.error(this.$t('message.fail'));
+                // this.$notify.error({
+                //     title: 'Error',
+                //     message: error.message
+                // })
+                Toast.fail(this.$t('word.fail'))
+
             });
         },
     }
