@@ -95,7 +95,6 @@ export default {
                         this.getEthByKey(this.keyNumber)
                         setTimeout(() => {
                             Toast.success(this.$t('word.success'))
-                            this.websocket.send(JSON.stringify({ time: new Date().getTime() }))
                         }, 2000)
                     })
                     .on('error', (error) => {
