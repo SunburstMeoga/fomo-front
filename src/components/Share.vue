@@ -31,12 +31,12 @@ export default {
             show: false,
             imageUrl: require("../assets/pglogo@60.png"),
             options: [
-                [
-                    { name: 'Telegram', icon: 'https://img2.baidu.com/it/u=1365112930,1544002754&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500', type: 1 },
-                    { name: 'WhatsApp', icon: 'https://img0.baidu.com/it/u=1421846083,3598758220&fm=253&fmt=auto&app=138&f=JPEG?w=300&h=300', type: 2 },
-                    { name: 'WeChat', icon: 'wechat', type: 3 },
-                    { name: 'QQ', icon: 'qq', type: 4 },
-                ],
+                // [
+                //     { name: 'Telegram', icon: 'https://img2.baidu.com/it/u=1365112930,1544002754&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500', type: 1 },
+                //     { name: 'WhatsApp', icon: 'https://img0.baidu.com/it/u=1421846083,3598758220&fm=253&fmt=auto&app=138&f=JPEG?w=300&h=300', type: 2 },
+                //     { name: 'WeChat', icon: 'wechat', type: 3 },
+                //     { name: 'QQ', icon: 'qq', type: 4 },
+                // ],
 
                 [{ name: 'QRCode', icon: 'qrcode', type: 5 },
                 { name: 'Copy Link', icon: 'link', type: 6 },]
