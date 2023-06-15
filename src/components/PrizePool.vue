@@ -213,8 +213,6 @@ export default {
                 this.timer = setInterval(() => {
                     this.countDown(parseInt(result) * 1000, new Date().getTime())
                 }, 1000)
-                console.log(parseInt(result) * 1000, new Date().getTime())
-                console.log(this.countTime)
             })
         }
     }

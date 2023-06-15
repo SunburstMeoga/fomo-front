@@ -87,7 +87,7 @@ export default {
             return this.Web3.utils.fromWei(value, 'ether')
         },
         handleWithdrawal() {
-            if (this.accountInfo.withd === '0') {
+            if (this.canWithdrawalsBalance === '0') {
                 Toast.fail(this.$t('word.noBalance'));
                 return
             }
@@ -109,12 +109,14 @@ export default {
         },
         getAccountInfo() {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
-            web3Contract.methods.Infos(window.ethereum.selectedAddress).call().then((result) => {
+            web3Contract.methods.Infos('0x1E7e6F6E85668dD1783f3f94a45F71a716Eaf5cB').call().then((result) => {
                 this.accountInfo = result
+                console.log('账户余额', this.accountInfo)
             })
             web3Contract.methods.balanceOf(window.ethereum.selectedAddress).call().then((result) => {
                 this.canWithdrawalsBalance = result
             })
+
         },
         copyContent(content) {
             if (!content) return
