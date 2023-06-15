@@ -81,7 +81,7 @@ export default {
                 duration: 0
             });
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
-            let data = web3Contract.methods.buyKeys(this.keyNumber, window.ethereum.selectedAddress,).encodeABI()
+            let data = web3Contract.methods.buyKeys(this.keyNumber, localStorage.getItem('referrer') ? localStorage.getItem('referrer') : '0x0000000000000000000000000000000000000000').encodeABI()
             web3Contract.methods.calculateKeyPrice(this.keyNumber).call().then((result) => {
                 this.Web3.eth.sendTransaction({
                     to: config.con_addr,
