@@ -1,16 +1,19 @@
 <template>
     <div class="pb-8">
         <div ref="vantaRef" style="width:100%;height:100vh;position:fixed;z-index: -1;"></div>
-
         <menu-bar></menu-bar>
+        <div class="bg-primary text-text italic  rounded-lg mt-2 mr-auto ml-auto mb-2 w-11/12 sm:w-10/12 p-2 text-center">
+            {{ $t('word.illustrate') }}
+        </div>
         <div class="mt-2">
             <module-title :titleWord="$t('popularize.referrer')"></module-title>
             <div class="card mt-2 mr-auto ml-auto mb-4 w-11/12 sm:w-10/12">
                 <promote-relationships />
             </div>
         </div>
-        <div class="bg-primary text-text italic  rounded-lg mt-2 mr-auto ml-auto mb-2 w-11/12 sm:w-10/12 p-2 text-center">
-            {{ $t('word.illustrate') }}
+
+        <div class="mt-2 mr-auto ml-auto mb-4 w-11/12">
+            <share />
         </div>
         <div v-if="$store.state.walletInfo.address && $store.state.chainId === Config.chainId">
             <module-title :titleWord="$t('account.infor')"></module-title>
@@ -27,9 +30,7 @@
         <div class="card mt-2 mr-auto ml-auto mb-4 w-11/12 sm:w-10/12">
             <prize-pool></prize-pool>
         </div>
-        <div class="mt-2 mr-auto ml-auto mb-4 w-11/12">
-            <share />
-        </div>
+
         <withdrawal ref="withdrawal" />
         <!-- <div class="bg-primary py-2 px-2" @click="handleWithdrawal">
             sdjflsjlfjlsjdfl
