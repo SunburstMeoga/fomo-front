@@ -3,12 +3,12 @@
         <van-popup position="bottom" :style="{ height: '10%' }" v-model="showWithdrawal">
             <div class="px-2 py-2">
                 <div>
-                    {{ $t('account.account') }}{{ $t('word.amount') }}
+                    {{ $t('account.withdrawable') }}{{ $t('word.amount') }}
                 </div>
                 <div class="flex justify-between items-center">
                     <div class="flex-1">
-                        <input class="w-full" :v-model="fromWei(value)" ref="inputId" pattern="\d*" type='tel' id='inputId'
-                            :placeholder="$t('account.withdrawable') + fromWei(canWithdrawalBalance) + ' HAH'" />
+                        <input class="w-full" v-model="value" ref="inputId" pattern="\d*" type='tel' id='inputId'
+                            :placeholder="$t('account.withdrawable') + '  ' + fromWei(canWithdrawalBalance) + ' HAH'" />
                     </div>
                     <div class="flex justify-end">
                         <div class="px-2 py-1 underline text-sm text-primary" @click="allWithdrawal">
@@ -79,9 +79,7 @@ export default {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             let withdrawalAmount = this.Web3.utils.toWei(this.value, 'ether')
             web3Contract.methods.withdrawal(withdrawalAmount).call().then((result) => {
-                this.canWithdrawalsBalance = result
-
-                console.log('canWithdrawalsBalance:', result)
+                this.showWithdrawal = false
                 Toast.success(this.$t('word.success'));
             }).catch((err) => {
                 Toast.fail(err);
