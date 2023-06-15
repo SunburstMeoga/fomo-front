@@ -11,7 +11,7 @@ export default {
         confirm: 'Confirm',
         cancel: 'Cancel',
         fail: 'Please try again',
-        noBalance: 'バランス不足'
+        noBalance: 'Insufficient balance'
     },
     popularize: {
         referrer: 'Referrer',
