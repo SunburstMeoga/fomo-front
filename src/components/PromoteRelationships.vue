@@ -46,7 +46,7 @@ export default {
         }
     },
     created() {
-        localStorage.getItem('referrer') ? this.referrerAddress = localStorage.getItem('referrer') : this.referrerAddress = window.ethereum.selectedAddress
+        localStorage.getItem('referrer') ? this.referrerAddress = localStorage.getItem('referrer') : '0x0000000000000000000000000000000000000000'
     },
     mounted() {
         this.getInviter()
