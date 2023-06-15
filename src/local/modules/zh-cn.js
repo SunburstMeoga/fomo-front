@@ -11,7 +11,9 @@ export default {
         confirm: '确认',
         cancel: '取消',
         fail: '请重试',
-        noBalance: '余额不足'
+        noBalance: '余额不足',
+        amount: '金额',
+        all: '全部'
     },
     popularize: {
         referrer: '推荐人',

@@ -3,19 +3,19 @@
         <van-popup position="bottom" :style="{ height: '10%' }" v-model="showWithdrawal">
             <div class="px-2 py-2">
                 <div>
-                    提现金额
+                    {{ $t('account.account') }}{{ $t('word.amount') }}
                 </div>
                 <div class="flex justify-between items-center">
                     <div class="flex-1">
-                        <input class="w-full" v-model="value" ref="inputId" pattern="\d*" type='tel' id='inputId'
-                            :placeholder="'本次最多可提现 ' + canWithdrawalBalance + ' HAH'" />
+                        <input class="w-full" :v-model="fromWei(value)" ref="inputId" pattern="\d*" type='tel' id='inputId'
+                            :placeholder="$t('account.withdrawable') + fromWei(canWithdrawalBalance) + ' HAH'" />
                     </div>
                     <div class="flex justify-end">
-                        <div class="px-2 py-1 underline text-sm text-primary">
-                            全部
+                        <div class="px-2 py-1 underline text-sm text-primary" @click="allWithdrawal">
+                            {{ $t('word.all') }}
                         </div>
                         <div class="px-2 py-1 bg-primary rounded text-sm text-text ml-2" @click="toWithdrawal">
-                            确认提现
+                            {{ $t('word.confirm') }}{{ $t('account.withdrawals') }}
                         </div>
                     </div>
                 </div>
@@ -57,6 +57,12 @@ export default {
             }
             //  正常得话继续调后端接口
         },
+        fromWei(value) {
+            return this.Web3.utils.fromWei(value, 'ether')
+        },
+        allWithdrawal() {
+            this.value = this.fromWei(this.canWithdrawalBalance)
+        },
         getBalance() {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.balanceOf(window.ethereum.selectedAddress).call().then((result) => {
@@ -66,17 +72,17 @@ export default {
         },
         toWithdrawal() {
             Toast.loading({
-                message: '加载中...',
+                message: this.$t('round.loading'),
                 forbidClick: true,
                 duration: 0
             });
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
-
-            web3Contract.methods.withdrawal(BigInt(325234523453453452345234523452345345)).call().then((result) => {
+            let withdrawalAmount = this.Web3.utils.toWei(this.value, 'ether')
+            web3Contract.methods.withdrawal(withdrawalAmount).call().then((result) => {
                 this.canWithdrawalsBalance = result
 
                 console.log('canWithdrawalsBalance:', result)
-                Toast.success('成功');
+                Toast.success(this.$t('word.success'));
             }).catch((err) => {
                 Toast.fail(err);
             })

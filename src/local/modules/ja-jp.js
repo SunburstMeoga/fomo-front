@@ -11,7 +11,9 @@ export default {
         confirm: '確認',
         cancel: 'キャンセル',
         fail: '再試行してください',
-        noBalance: 'バランス不足'
+        noBalance: 'バランス不足',
+        amount: '量',
+        all: 'すべての'
     },
     popularize: {
         referrer: 'リファラー',

@@ -11,7 +11,10 @@ export default {
         confirm: 'Confirm',
         cancel: 'Cancel',
         fail: 'Please try again',
-        noBalance: 'Insufficient balance'
+        noBalance: 'Insufficient balance',
+        amount: 'Amount',
+        all: 'all'
+
     },
     popularize: {
         referrer: 'Referrer',

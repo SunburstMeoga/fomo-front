@@ -11,7 +11,10 @@ export default {
         confirm: '確認',
         cancel: '取消',
         fail: '請重試',
-        noBalance: '餘額不足'
+        noBalance: '餘額不足',
+        amount: '金額',
+        all: '全部'
+
     },
     popularize: {
         referrer: '推薦人',
