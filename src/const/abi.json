@@ -1,23 +1,5 @@
 [
     {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "numKeys",
-                "type": "uint256"
-            },
-            {
-                "internalType": "address payable",
-                "name": "inviter",
-                "type": "address"
-            }
-        ],
-        "name": "buyKeys",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
         "inputs": [],
         "stateMutability": "nonpayable",
         "type": "constructor"
@@ -93,16 +75,143 @@
         "type": "event"
     },
     {
-        "inputs": [
+        "inputs": [],
+        "name": "BASE_KEY_PRICE",
+        "outputs": [
             {
                 "internalType": "uint256",
-                "name": "v",
+                "name": "",
                 "type": "uint256"
             }
         ],
-        "name": "withdrawal",
-        "outputs": [],
-        "stateMutability": "nonpayable",
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "addr",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "r",
+                "type": "uint256"
+            }
+        ],
+        "name": "Infos1",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "spend",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "numKeys",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "mask",
+                        "type": "uint256"
+                    }
+                ],
+                "internalType": "struct Fomo3D.player",
+                "name": "p",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "addr",
+                "type": "address"
+            }
+        ],
+        "name": "Infos2",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "withd",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "spend",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "spend_s",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "numKey",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "numKey_s",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "expectIncome",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "utc",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "addr",
+                "type": "address"
+            }
+        ],
+        "name": "Inviter",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "number",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "TIMER_INCREMENT",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -154,16 +263,21 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "BASE_KEY_PRICE",
-        "outputs": [
+        "inputs": [
             {
                 "internalType": "uint256",
-                "name": "",
+                "name": "numKeys",
                 "type": "uint256"
+            },
+            {
+                "internalType": "address payable",
+                "name": "inviter",
+                "type": "address"
             }
         ],
-        "stateMutability": "view",
+        "name": "buyKeys",
+        "outputs": [],
+        "stateMutability": "payable",
         "type": "function"
     },
     {
@@ -179,115 +293,6 @@
             {
                 "internalType": "uint256",
                 "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "addr",
-                "type": "address"
-            }
-        ],
-        "name": "Infos",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "withd",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "spend",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "spend_s",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "numKey",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "numKey_s",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "expectIncome",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "addr",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "r",
-                "type": "uint256"
-            }
-        ],
-        "name": "Infos",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "uint256",
-                        "name": "spend",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "numKeys",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "mask",
-                        "type": "uint256"
-                    }
-                ],
-                "internalType": "struct Fomo3D.player",
-                "name": "p",
-                "type": "tuple"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "addr",
-                "type": "address"
-            }
-        ],
-        "name": "Inviter",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "number",
                 "type": "uint256"
             }
         ],
@@ -315,12 +320,12 @@
     },
     {
         "inputs": [],
-        "name": "lastBuyer",
+        "name": "lastBuyTimestamp",
         "outputs": [
             {
-                "internalType": "address payable",
+                "internalType": "uint256",
                 "name": "",
-                "type": "address"
+                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -328,12 +333,12 @@
     },
     {
         "inputs": [],
-        "name": "lastBuyTimestamp",
+        "name": "lastBuyer",
         "outputs": [
             {
-                "internalType": "uint256",
+                "internalType": "address payable",
                 "name": "",
-                "type": "uint256"
+                "type": "address"
             }
         ],
         "stateMutability": "view",
@@ -410,6 +415,11 @@
                 "internalType": "uint256",
                 "name": "totalHAH",
                 "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "totalAmount",
+                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -444,16 +454,16 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "TIMER_INCREMENT",
-        "outputs": [
+        "inputs": [
             {
                 "internalType": "uint256",
-                "name": "",
+                "name": "v",
                 "type": "uint256"
             }
         ],
-        "stateMutability": "view",
+        "name": "withdrawal",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     }
 ]

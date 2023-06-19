@@ -81,6 +81,7 @@ export default {
             web3Contract.methods.withdrawal(withdrawalAmount).call().then((result) => {
                 this.showWithdrawal = false
                 Toast.success(this.$t('word.success'));
+                console.log('result', result)
             }).catch((err) => {
                 Toast.fail(err);
             })

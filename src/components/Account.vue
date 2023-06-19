@@ -109,9 +109,9 @@ export default {
         },
         getAccountInfo() {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
-            web3Contract.methods.Infos(window.ethereum.selectedAddress).call().then((result) => {
+            web3Contract.methods.Infos2(window.ethereum.selectedAddress).call().then((result) => {
                 this.accountInfo = result
-
+                console.log(this.accountInfo)
             })
             web3Contract.methods.balanceOf(window.ethereum.selectedAddress).call().then((result) => {
                 console.log('可提现余额', result)
