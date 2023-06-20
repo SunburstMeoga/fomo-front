@@ -84,7 +84,13 @@ export default {
     methods: {
         addressFilter,
         fromWei(value) {
-            return this.Web3.utils.fromWei(value, 'ether')
+            if (value === '0') {
+                console.log('值为0')
+                return "0.0000"
+            } else {
+                return this.Web3.utils.fromWei(value, 'ether')
+            }
+
         },
         handleWithdrawal() {
             if (this.canWithdrawalsBalance === '0') {
@@ -97,7 +103,7 @@ export default {
             this.Web3.eth.getBalance(address).then((res) => {
                 let walletInfo = {
                     address: address,
-                    balance: this.Web3.utils.fromWei(res, 'ether')
+                    balance: this.fromWei(res)
                 }
                 localStorage.setItem('walletInfo', JSON.stringify(walletInfo))
                 localStorage.setItem('connectStatus', 'connect')

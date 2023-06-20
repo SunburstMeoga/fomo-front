@@ -140,7 +140,14 @@ export default {
 
         addressFilter,
         fromWei(value) {
-            return this.Web3.utils.fromWei(value, 'ether')
+            if (value === '0') {
+                console.log('值为0')
+                return "0.0000"
+            } else {
+                return this.Web3.utils.fromWei(value, 'ether')
+            }
+
+
         },
         copyContent(content) {
             if (!content) return
@@ -195,11 +202,11 @@ export default {
             })
 
             web3Contract.methods.rounds().call().then((result) => {
-                // console.log('回合信息', result)
+                console.log('回合信息', result)
                 this.roundInfo = result
             })
             web3Contract.methods.pot().call().then((result) => {
-                this.pot = this.Web3.utils.fromWei(result, 'ether')
+                this.pot = this.fromWei(result)
             })
             web3Contract.methods.roundCount().call().then((result) => {
                 this.roundCount = result
