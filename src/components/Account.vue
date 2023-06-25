@@ -108,7 +108,7 @@ export default {
                 localStorage.setItem('walletInfo', JSON.stringify(walletInfo))
                 localStorage.setItem('connectStatus', 'connect')
                 this.$store.commit('getWalletInfo', JSON.parse(localStorage.getItem('walletInfo')))
-                console.log('store', this.$store.state.walletInfo)
+                // console.log('store', this.$store.state.walletInfo)
             }).catch(err => {
                 console.log('getbalance err', err)
             })
@@ -117,10 +117,10 @@ export default {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.Infos2(window.ethereum.selectedAddress).call().then((result) => {
                 this.accountInfo = result
-                console.log(this.accountInfo)
+                // console.log(this.accountInfo)
             })
             web3Contract.methods.balanceOf(window.ethereum.selectedAddress).call().then((result) => {
-                console.log('可提现余额', result)
+                // console.log('可提现余额', result)
                 this.canWithdrawalsBalance = result
             })
 

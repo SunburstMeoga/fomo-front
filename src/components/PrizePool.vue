@@ -202,7 +202,7 @@ export default {
             })
 
             web3Contract.methods.rounds().call().then((result) => {
-                console.log('回合信息', result)
+                // console.log('回合信息', result)
                 this.roundInfo = result
             })
             web3Contract.methods.pot().call().then((result) => {

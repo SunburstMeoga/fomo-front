@@ -78,13 +78,32 @@ export default {
             });
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             let withdrawalAmount = this.Web3.utils.toWei(this.value, 'ether')
-            web3Contract.methods.withdrawal(withdrawalAmount).call().then((result) => {
-                this.showWithdrawal = false
-                Toast.success(this.$t('word.success'));
-                console.log('result', result)
-            }).catch((err) => {
-                Toast.fail(err);
-            })
+            web3Contract.methods.withdrawal(withdrawalAmount)
+                .send({ from: window.ethereum.selectedAddress })
+                .on('transationHash', (hash) => {
+                    // console.log('hash', hash)
+                })
+                .on('receipt', (receipt) => {
+                    // console.log('receipt', receipt)
+                })
+                .then((res) => {
+                    console.log('res', res)
+                    Toast.clear()
+                })
+                .catch(err => {
+                    console.log('err', err)
+                    Toast.clear()
+
+                    //   this.isLoading = false
+
+                })
+            // web3Contract.methods.withdrawal(withdrawalAmount).call().then((result) => {
+            //     this.showWithdrawal = false
+            //     Toast.success(this.$t('word.success'));
+            //     console.log('result', result)
+            // }).catch((err) => {
+            //     Toast.fail(err);
+            // })
         },
         onInput(value) {
             console.log(value)
