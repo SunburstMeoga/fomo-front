@@ -199,6 +199,9 @@ export default {
 
             web3Contract.methods.lastBuyer().call().then((result) => {
                 this.lastBuyer = result
+                if (result === window.ethereum.selectedAddress) {
+                    this.$store.commit('isLastBuyer', true)
+                }
             })
 
             web3Contract.methods.rounds().call().then((result) => {
@@ -206,7 +209,9 @@ export default {
                 this.roundInfo = result
             })
             web3Contract.methods.pot().call().then((result) => {
+                this.$store.commit('setPot', result)
                 this.pot = this.fromWei(result)
+                // console.log('pot', this.pot)
             })
             web3Contract.methods.roundCount().call().then((result) => {
                 this.roundCount = result

@@ -40,7 +40,7 @@
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
-                    <div>{{ fromWei(accountInfo.expectIncome) }} {{ Config.chainName }}</div>
+                    <div>{{ fromWei(expectIncome) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.withdrawn') }}{{ $t('account.earnings') }}</div>
@@ -70,27 +70,30 @@ export default {
         return {
             accountInfo: {},
             canWithdrawalsBalance: '',
+            expectIncome: '',
         }
     },
     mounted() {
         if (this.$store.state.chainId !== this.Config.chainId) {
             return
         }
+
         this.getAccountInfo()
         setInterval(() => {
             this.getAccountInfo()
+            console.log('是否为最后买家', this.$store.state.isLastBuyer)
         }, 2000);
     },
     methods: {
         addressFilter,
         fromWei(value) {
             if (value === '0') {
-                console.log('值为0')
+                // console.log('值为0', value)
                 return "0.0000"
             } else {
+                // console.error('值不为0', value)
                 return this.Web3.utils.fromWei(value, 'ether')
             }
-
         },
         handleWithdrawal() {
             if (this.canWithdrawalsBalance === '0') {
@@ -117,11 +120,18 @@ export default {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.Infos2(window.ethereum.selectedAddress).call().then((result) => {
                 this.accountInfo = result
+
                 // console.log(this.accountInfo)
             })
             web3Contract.methods.balanceOf(window.ethereum.selectedAddress).call().then((result) => {
-                // console.log('可提现余额', result)
+                console.log(Number(this.$store.state.pot), Number(result))
+                console.log('pot', toString(Number(this.$store.state.pot) + Number(result)))
                 this.canWithdrawalsBalance = result
+                if (this.$store.state.isLastBuyer) {
+                    this.expectIncome = toString(Number(this.$store.state.pot) + Number(result))
+                } else {
+                    this.expectIncome = result
+                }
             })
 
         },

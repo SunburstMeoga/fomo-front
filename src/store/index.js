@@ -9,6 +9,8 @@ const store = new Vuex.Store({
         walletInfo: {},
         chainId: '',
         referrer: '',
+        isLastBuyer: false,
+        pot: ''
     },
     mutations: {
         getCurrentAddress(state, newval) {
@@ -22,6 +24,12 @@ const store = new Vuex.Store({
         },
         getReferrer(state, newVal) {
             state.referrer = newVal
+        },
+        isLastBuyer(state, newVal) {
+            state.isLastBuyer = newVal
+        },
+        setPot(state, newVal) {
+            state.pot = newVal
         }
     }
 })
