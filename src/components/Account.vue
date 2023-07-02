@@ -124,11 +124,11 @@ export default {
                 // console.log(this.accountInfo)
             })
             web3Contract.methods.balanceOf(window.ethereum.selectedAddress).call().then((result) => {
-                console.log(Number(this.$store.state.pot), Number(result))
-                console.log('pot', toString(Number(this.$store.state.pot) * 0.7 + Number(result)))
+                // console.log(((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
+                // console.log('pot', ((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
                 this.canWithdrawalsBalance = result
                 if (this.$store.state.isLastBuyer) {
-                    this.expectIncome = toString(Number(this.$store.state.pot) * 0.7 + Number(result))
+                    this.expectIncome = ((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString()
                 } else {
                     this.expectIncome = result
                 }

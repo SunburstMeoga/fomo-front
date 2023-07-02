@@ -199,7 +199,8 @@ export default {
 
             web3Contract.methods.lastBuyer().call().then((result) => {
                 this.lastBuyer = result
-                if (result === window.ethereum.selectedAddress) {
+                // console.log(result === window.ethereum.selectedAddress, result.toLowerCase(), window.ethereum.selectedAddress)
+                if (result.toLowerCase() === window.ethereum.selectedAddress) {
                     this.$store.commit('isLastBuyer', true)
                 }
             })
