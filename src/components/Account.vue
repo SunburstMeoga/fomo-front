@@ -70,7 +70,7 @@ export default {
         return {
             accountInfo: {},
             canWithdrawalsBalance: '',
-            expectIncome: '',
+            expectIncome: '0',
         }
     },
     mounted() {
@@ -87,7 +87,7 @@ export default {
     methods: {
         addressFilter,
         fromWei(value) {
-            if (value === '0') {
+            if (value === '0' || value === null) {
                 // console.log('值为0', value)
                 return "0.0000"
             } else {
@@ -127,11 +127,14 @@ export default {
                 // console.log(((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
                 // console.log('pot', ((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
                 this.canWithdrawalsBalance = result
-                if (this.$store.state.isLastBuyer) {
-                    this.expectIncome = ((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString()
-                } else {
-                    this.expectIncome = result
-                }
+
+            })
+            web3Contract.methods.expectIncome(window.ethereum.selectedAddress).call().then((result) => {
+                // console.log(((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
+                // console.log('pot', ((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
+                this.expectIncome = result
+                console.log('expectIncome', this.expectIncome, result)
+
             })
 
         },
