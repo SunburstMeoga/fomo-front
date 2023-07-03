@@ -140,13 +140,14 @@ export default {
 
         addressFilter,
         fromWei(value) {
-            if (value === '0') {
+            if (value === '0' || value === null) {
                 // console.log('值为0')
                 return "0.0000"
             } else {
                 return this.Web3.utils.fromWei(value, 'ether')
             }
 
+            // return value
 
         },
         copyContent(content) {
@@ -200,9 +201,9 @@ export default {
             web3Contract.methods.lastBuyer().call().then((result) => {
                 this.lastBuyer = result
                 // console.log(result === window.ethereum.selectedAddress, result.toLowerCase(), window.ethereum.selectedAddress)
-                // if (result.toLowerCase() === window.ethereum.selectedAddress) {
-                //     this.$store.commit('isLastBuyer', true)
-                // }
+                if (result.toLowerCase() === window.ethereum.selectedAddress) {
+                    this.$store.commit('isLastBuyer', true)
+                }
             })
             web3Contract.methods.rounds().call().then((result) => {
                 // console.log('回合信息', result)

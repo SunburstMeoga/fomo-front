@@ -81,7 +81,7 @@ export default {
         this.getAccountInfo()
         setInterval(() => {
             this.getAccountInfo()
-            console.log('是否为最后买家', this.$store.state.isLastBuyer)
+            console.log('is lastBuyer', this.$store.state.isLastBuyer)
         }, 2000);
     },
     methods: {
@@ -132,8 +132,13 @@ export default {
             web3Contract.methods.expectIncome(window.ethereum.selectedAddress).call().then((result) => {
                 // console.log(((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
                 // console.log('pot', ((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
-                this.expectIncome = result
-                console.log('expectIncome', this.expectIncome, result)
+                if (this.$store.state.isLastBuyer) {
+                    this.expectIncome = (((Number(this.$store.state.pot)) * 0.7 + Number(result))).toString()
+                } else {
+                    this.expectIncome = result
+                }
+
+                // console.log('expectIncome', this.expectIncome, result)
 
             })
 
