@@ -39,8 +39,11 @@
                     <div>{{ fromWei(accountInfo.spend_s) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
-                    <div>{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
+                    <div>{{ $t('account.epicycle') }}{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
                     <div>{{ fromWei(expectIncome) }} {{ Config.chainName }}</div>
+                </div>
+                <div class="text-primary  text-right text-sm" v-show="$store.state.isLastBuyer">
+                    Pot*0.7 + expect Income
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.withdrawn') }}{{ $t('account.earnings') }}</div>
@@ -138,7 +141,7 @@ export default {
                     this.expectIncome = result
                 }
 
-                // console.log('expectIncome', this.expectIncome, result)
+                console.log('expectIncome', (Number(this.$store.state.pot)) * 0.7, result)
 
             })
 

@@ -203,6 +203,8 @@ export default {
                 // console.log(result === window.ethereum.selectedAddress, result.toLowerCase(), window.ethereum.selectedAddress)
                 if (result.toLowerCase() === window.ethereum.selectedAddress) {
                     this.$store.commit('isLastBuyer', true)
+                } else {
+                    this.$store.commit('isLastBuyer', false)
                 }
             })
             web3Contract.methods.rounds().call().then((result) => {
