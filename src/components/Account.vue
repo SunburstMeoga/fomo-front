@@ -19,7 +19,7 @@
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.balance') }}</div>
-                    <div>{{ $store.state.walletInfo.balance }} {{ Config.chainName }}</div>
+                    <div>{{ Number($store.state.walletInfo.balance).toFixed(4) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.epicycle') }}{{ $t('account.hold') }}{{ $t('account.totalKeys') }}</div>
@@ -38,13 +38,7 @@
                     <div>{{ $t('account.history') }}{{ $t('account.spend') }}</div>
                     <div>{{ fromWei(accountInfo.spend_s) }} {{ Config.chainName }}</div>
                 </div>
-                <div class="flex justify-between items-center text-text">
-                    <div>{{ $t('account.epicycle') }}{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
-                    <div>{{ fromWei(expectIncome) }} {{ Config.chainName }}</div>
-                </div>
-                <div class="text-primary  text-right text-sm" v-show="$store.state.isLastBuyer">
-                    Pot*0.7 + expect Income
-                </div>
+
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.withdrawn') }}{{ $t('account.earnings') }}</div>
                     <div>{{ fromWei(accountInfo.withd) }} {{ Config.chainName }}</div>
@@ -52,6 +46,14 @@
                 <div class="flex justify-between items-center text-text mb-2">
                     <div>{{ $t('account.withdrawable') }}{{ $t('account.earnings') }}</div>
                     <div>{{ fromWei(canWithdrawalsBalance) }} {{ Config.chainName }}</div>
+                </div>
+
+                <div class="flex justify-between items-center text-text">
+                    <div>{{ $t('account.epicycle') }}{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
+                    <div>{{ fromWei(expectIncome) }} {{ Config.chainName }}</div>
+                </div>
+                <div class="text-primary  text-right text-sm" v-show="$store.state.isLastBuyer">
+                    Pot*0.7 + expect Income
                 </div>
                 <div class="text-text bg-primary text-center py-2 w-full rounded-full" @click="handleWithdrawal">
                     {{ $t('account.withdrawals') }}
@@ -94,8 +96,8 @@ export default {
                 // console.log('值为0', value)
                 return "0.0000"
             } else {
-                // console.error('值不为0', value)
-                return this.Web3.utils.fromWei(value, 'ether')
+                let number = Number(this.Web3.utils.fromWei(value, 'ether'))
+                return number.toFixed(4)
             }
         },
         handleWithdrawal() {

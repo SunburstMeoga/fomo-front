@@ -144,7 +144,9 @@ export default {
                 // console.log('值为0')
                 return "0.0000"
             } else {
-                return this.Web3.utils.fromWei(value, 'ether')
+                // return this.Web3.utils.fromWei(value, 'ether')
+                let number = Number(this.Web3.utils.fromWei(value, 'ether'))
+                return number.toFixed(4)
             }
 
             // return value
