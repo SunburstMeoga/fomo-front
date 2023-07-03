@@ -49,7 +49,7 @@ export default {
         drain: 'ゲームは以下の時間に終了します',
         loading: '読み込み中...',
         lastBuyer: '最後の購入者',
-        pot: '「ポット」',
+        pot: '賞金総額',
         totalKeySold: '販売されたキーの合計',
         roundCount: 'ラウンド数',
         totalAmount: '総額',

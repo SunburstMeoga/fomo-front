@@ -49,7 +49,7 @@ export default {
         drain: '本轮游戏将于以下时间结束',
         loading: '正在加载...',
         lastBuyer: '最后一个买家',
-        pot: '合约池',
+        pot: '总奖池',
         totalKeySold: '售出的Key总数',
         roundCount: '已完结的回合次数',
         totalAmount: '玩家购买Key的总金额',

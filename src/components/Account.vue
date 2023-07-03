@@ -43,12 +43,12 @@
                     <div>{{ $t('account.withdrawn') }}{{ $t('account.earnings') }}</div>
                     <div>{{ fromWei(accountInfo.withd) }} {{ Config.chainName }}</div>
                 </div>
-                <div class="flex justify-between items-center text-text mb-2">
+                <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.withdrawable') }}{{ $t('account.earnings') }}</div>
                     <div>{{ fromWei(canWithdrawalsBalance) }} {{ Config.chainName }}</div>
                 </div>
 
-                <div class="flex justify-between items-center text-text">
+                <div class="flex justify-between items-center text-text mb-2">
                     <div>{{ $t('account.epicycle') }}{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
                     <div>{{ fromWei(expectIncome) }} {{ Config.chainName }}</div>
                 </div>
@@ -101,7 +101,7 @@ export default {
                 return "0.0000"
             } else {
                 let number = Number(this.Web3.utils.fromWei(value, 'ether'))
-                return number.toFixed(4)
+                return number.toFixed(5)
             }
         },
         handleWithdrawal() {

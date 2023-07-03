@@ -50,7 +50,7 @@ export default {
         drain: 'The game will end at the following time',
         loading: 'Loading...',
         lastBuyer: 'Last Buyer',
-        pot: 'Pot',
+        pot: 'Total Prize Pool',
         totalKeySold: 'Total Key Sold',
         roundCount: 'Round Count',
         totalAmount: 'The Total Amount',

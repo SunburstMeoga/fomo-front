@@ -146,7 +146,7 @@ export default {
             } else {
                 // return this.Web3.utils.fromWei(value, 'ether')
                 let number = Number(this.Web3.utils.fromWei(value, 'ether'))
-                return number.toFixed(4)
+                return number.toFixed(5)
             }
 
             // return value
