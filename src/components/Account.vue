@@ -52,8 +52,8 @@
                     <div>{{ $t('account.epicycle') }}{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
                     <div>{{ fromWei(expectIncome) }} {{ Config.chainName }}</div>
                 </div>
-                <div class="text-primary  text-right text-sm" v-show="$store.state.isLastBuyer">
-                    Pot*0.7 + expect Income
+                <div class="text-primary  text-center text-xs mb-4" v-show="$store.state.isLastBuyer">
+                    {{ $t('account.expectIncome') }}
                 </div>
                 <div class="text-text bg-primary text-center py-2 w-full rounded-full" @click="handleWithdrawal">
                     {{ $t('account.withdrawals') }}

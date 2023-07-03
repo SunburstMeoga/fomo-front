@@ -36,7 +36,8 @@ export default {
         estimate: '預估',
         withdrawn: '已提現',
         withdrawable: '可提現',
-        withdrawals: '提現'
+        withdrawals: '提現',
+        expectIncome: '預估收益有兩部分構成，持有Key的收益（x.xxx）和贏家的收益（x.xxx），如果你不是最後一個購買者僅有Key的持有收益。 '
     },
     purchase: {
         title: '購買',
