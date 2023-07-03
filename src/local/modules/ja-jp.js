@@ -36,7 +36,7 @@ export default {
         withdrawn: '撤回',
         withdrawable: '出金可能',
         withdrawals: '引き出し',
-        expectIncome: '推定収益は、キーを保持することによる利益(x.xxx)と勝者の利益(x.xxx)の2つの要素で構成され、最後の購入者でない場合は、キーの保有利益のみが得られます。'
+        expectIncome: '推定収益は、キーを保持することによる利益({expectIncome})と勝者の利益({pot})の2つの要素で構成され、最後の購入者でない場合は、キーの保有利益のみが得られます。'
     },
     purchase: {
         title: '「購入」',

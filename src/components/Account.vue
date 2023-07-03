@@ -52,8 +52,11 @@
                     <div>{{ $t('account.epicycle') }}{{ $t('account.estimate') }}{{ $t('account.earnings') }}</div>
                     <div>{{ fromWei(expectIncome) }} {{ Config.chainName }}</div>
                 </div>
-                <div class="text-primary  text-center text-xs mb-4" v-show="$store.state.isLastBuyer">
-                    {{ $t('account.expectIncome') }}
+                <div class="text-primary  text-center text-xs mb-4">
+                    {{ $t('account.expectIncome', {
+                        expectIncome: expectIncomeNumber, pot: $store.state.isLastBuyer ? fromWei(((Number($store.state.pot)) *
+                            0.7).toString()) : '0.000'
+                    }) }}
                 </div>
                 <div class="text-text bg-primary text-center py-2 w-full rounded-full" @click="handleWithdrawal">
                     {{ $t('account.withdrawals') }}
@@ -76,6 +79,7 @@ export default {
             accountInfo: {},
             canWithdrawalsBalance: '',
             expectIncome: '0',
+            expectIncomeNumber: '0'
         }
     },
     mounted() {
@@ -142,7 +146,7 @@ export default {
                 } else {
                     this.expectIncome = result
                 }
-
+                this.expectIncomeNumber = this.fromWei(result)
                 console.log('expectIncome', (Number(this.$store.state.pot)) * 0.7, result)
 
             })

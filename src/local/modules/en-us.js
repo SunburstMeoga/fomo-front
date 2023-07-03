@@ -37,7 +37,7 @@ export default {
         withdrawn: 'Withdrawn',
         withdrawable: 'Withdrawable',
         withdrawals: 'Withdrawals',
-        expectIncome: "Estimated earnings consist of two components, the gain from holding the Key (x.xxx) and the winner's gain (x.xxx), and if you're not the last purchaser, you'll only have the HoldingGain on Key. "
+        expectIncome: "Estimated earnings consist of two components, the gain from holding the Key ({expectIncome}) and the winner's gain ({pot}), and if you're not the last purchaser, you'll only have the HoldingGain on Key. "
     },
     purchase: {
         title: 'Purchase',

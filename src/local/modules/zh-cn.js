@@ -36,7 +36,7 @@ export default {
         withdrawn: '已提现',
         withdrawable: '可提现',
         withdrawals: '提现',
-        expectIncome: '预估收益有两部分构成，持有Key的收益(x.xxx)和赢家的收益(x.xxx)，如果你不是最后一个购买者仅有Key的持有收益。'
+        expectIncome: '预估收益有两部分构成，持有Key的收益({expectIncome})和赢家的收益({pot})，如果你不是最后一个购买者仅有Key的持有收益。'
     },
     purchase: {
         title: '购买',
