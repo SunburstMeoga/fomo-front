@@ -46,7 +46,7 @@ export default {
         //  保留四位小数
         numFilter(value) {
             // 截取当前数据到小数点后两位
-            let realVal = parseFloat(value).toFixed(4)
+            let realVal = parseFloat(value).toFixed(5)
             return realVal
         },
         //  购买的keys发生变化

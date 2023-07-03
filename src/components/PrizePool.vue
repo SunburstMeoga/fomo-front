@@ -142,7 +142,7 @@ export default {
         fromWei(value) {
             if (value === '0' || value === null) {
                 // console.log('值为0')
-                return "0.0000"
+                return "0.00000"
             } else {
                 // return this.Web3.utils.fromWei(value, 'ether')
                 let number = Number(this.Web3.utils.fromWei(value, 'ether'))
