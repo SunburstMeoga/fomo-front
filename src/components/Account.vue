@@ -19,7 +19,7 @@
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.balance') }}</div>
-                    <div>{{ Number($store.state.walletInfo.balance).toFixed(4) }} {{ Config.chainName }}</div>
+                    <div>{{ Number($store.state.walletInfo.balance).toFixed(5) }} {{ Config.chainName }}</div>
                 </div>
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.epicycle') }}{{ $t('account.hold') }}{{ $t('account.totalKeys') }}</div>
