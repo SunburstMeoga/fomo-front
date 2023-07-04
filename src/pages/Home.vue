@@ -80,10 +80,10 @@ export default {
     methods: {
         handleWithdrawal() {
             this.$refs.withdrawal.showWithdrawal = true
-            setTimeout(() => {
-                console.log(document.getElementById('inputId'))
-                document.getElementById('inputId').focus()
-            }, 1000)
+            // setTimeout(() => {
+            //     console.log(document.getElementById('inputId'))
+            //     document.getElementById('inputId').focus()
+            // }, 1000)
         }
     },
     beforeDestroy() {

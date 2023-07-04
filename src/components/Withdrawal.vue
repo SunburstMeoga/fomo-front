@@ -40,7 +40,10 @@ export default {
         }
     },
     mounted() {
-        this.getBalance()
+        setInterval(() => {
+            this.getBalance()
+            console.log('is lastBuyer', this.$store.state.isLastBuyer)
+        }, 2000);
     },
     methods: {
         clearNoNum(value) {
@@ -67,7 +70,7 @@ export default {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.balanceOf(window.ethereum.selectedAddress).call().then((result) => {
                 this.canWithdrawalBalance = result
-                console.log('canWithdrawalBalance:', result)
+                // console.log('弹窗的提现:', result)
             })
         },
         toWithdrawal() {

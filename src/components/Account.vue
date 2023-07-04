@@ -136,6 +136,8 @@ export default {
                 // console.log(((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
                 // console.log('pot', ((Number(this.$store.state.pot)) * 0.7 + Number(result)).toString())
                 this.canWithdrawalsBalance = result
+                // console.log('账户余额的提现:', result)
+
 
             })
             web3Contract.methods.expectIncome(window.ethereum.selectedAddress).call().then((result) => {
