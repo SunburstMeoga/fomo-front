@@ -111,10 +111,10 @@ export default {
                             params: [
                                 {
                                     chainId: this.Config.chainId,
-                                    chainName: 'Hash Ahead Testnet',
-                                    rpcUrls: ['https://rpc-testnet.hashahead.org'],
+                                    chainName: 'PGChain',
+                                    rpcUrls: [this.Config.rpc],
                                     iconUrls: ['https://testnet.hashahead.org/logo.png'],
-                                    blockExplorerUrls: ['https://testnet.hashahead.org/'],
+                                    // blockExplorerUrls: ['https://testnet.hashahead.org/'],
                                     nativeCurrency: {
                                         name: this.Config.chainName,
                                         symbol: this.Config.chainName,

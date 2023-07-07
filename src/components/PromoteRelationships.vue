@@ -14,7 +14,7 @@
                 {{ $t('popularize.totalEarning') }}
                 <span class="number">
                     <count-to :start-val="0" :end-val="referralsNumber * 0.05" :duration="2000" />
-                </span> HAH
+                </span> {{ Config.chainName }}
             </div>
 
             <!-- <div class="flex justify-start items-baseline">{{ $t('popularize.referrerNumber') }}
