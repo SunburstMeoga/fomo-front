@@ -117,7 +117,7 @@ export default {
                   chainName: 'PGChain',
                   rpcUrls: [this.Config.rpc],
                   iconUrls: ['https://testnet.hashahead.org/logo.png'],
-                  // blockExplorerUrls: ['https://testnet.hashahead.org/'],
+                  blockExplorerUrls: ['https://scan.pgchain.org'],
                   nativeCurrency: {
                     name: this.Config.chainName,
                     symbol: this.Config.chainName,
