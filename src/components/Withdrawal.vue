@@ -7,14 +7,14 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <div class="flex-1">
-                        <input class="w-full" v-model=" value " ref="inputId" pattern="\d*" type='tel' id='inputId'
-                            :placeholder="$t('account.withdrawable') + '  ' + fromWei(canWithdrawalBalance) + ' ' + {{ Config.chainName }}" />
+                        <input class="w-full" v-model="value" ref="inputId" pattern="\d*" type='tel' id='inputId'
+                            :placeholder="$t('account.withdrawable') + '  ' + fromWei(canWithdrawalBalance) + ' ' + Config.chainName" />
                     </div>
                     <div class="flex justify-end">
-                        <div class="px-2 py-1 underline text-sm text-primary" @click=" allWithdrawal ">
+                        <div class="px-2 py-1 underline text-sm text-primary" @click="allWithdrawal">
                             {{ $t('word.all') }}
                         </div>
-                        <div class="px-2 py-1 bg-primary rounded text-sm text-text ml-2" @click=" toWithdrawal ">
+                        <div class="px-2 py-1 bg-primary rounded text-sm text-text ml-2" @click="toWithdrawal">
                             {{ $t('word.confirm') }}{{ $t('account.withdrawals') }}
                         </div>
                     </div>
