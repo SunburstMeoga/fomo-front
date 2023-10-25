@@ -21,16 +21,16 @@
                         </div>
                         <div class='flex flex-col items-end'>
                             <div class='text-sm flex justify-start items-center sm:text-lg'>
-                                <div class="hidden sm:block">
+                                <div class="hidden sm:block underline" @click="viewAddress(lastBuyer)">
                                     {{ lastBuyer }}
                                 </div>
-                                <div class="sm:hidden">
+                                <div class="sm:hidden underline" @click="viewAddress(lastBuyer)">
                                     {{ addressFilter(lastBuyer) }}
                                 </div>
-                                <div class="border cursor-pointer border-text rounded-2xl px-2 text-sm text-text ml-2"
+                                <!-- <div class="border cursor-pointer border-text rounded-2xl px-2 text-sm text-text ml-2"
                                     @click="copyContent(lastBuyer)">
                                     {{ $t('word.copy') }}
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -139,6 +139,9 @@ export default {
     methods: {
 
         addressFilter,
+        viewAddress(address) {
+            window.open(`https://scan.pgchain.org/address/${address}`)
+        },
         fromWei(value) {
             if (value === '0' || value === null) {
                 // console.log('值为0')

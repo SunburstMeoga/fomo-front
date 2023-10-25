@@ -2,7 +2,7 @@
     <div class="py-3 px-3">
         <div class="w-11/12 text-text">
             <div>{{ $t('popularize.referrerAddress') }}</div>
-            <div class="break-words text-xs">{{ referrerAddress }}</div>
+            <div class="break-words text-xs underline" @click="viewAddress(referrerAddress)">{{ referrerAddress }}</div>
             <div class="flex justify-start items-baseline">
                 {{ $t('popularize.referrerNumber') }}
                 <span class="number">
@@ -55,6 +55,9 @@ export default {
         }, 2000);
     },
     methods: {
+        viewAddress(address) {
+            window.open(`https://scan.pgchain.org/address/${address}`)
+        },
         getInviter() {
             let web3Contract = new this.Web3.eth.Contract(config.erc20_abi, config.con_addr)
             web3Contract.methods.Inviter(localStorage.getItem('referrer') ? localStorage.getItem('referrer') : window.ethereum.selectedAddress).call().then((result) => {

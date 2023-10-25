@@ -5,16 +5,16 @@
                 <div class="flex justify-between items-center text-text">
                     <div>{{ $t('account.address') }}</div>
                     <div class="flex justify-start items-center">
-                        <div class="sm:hidden">
+                        <div class="sm:hidden underline" @click="viewAddress($store.state.walletInfo.address)">
                             {{ addressFilter($store.state.walletInfo.address) }}
                         </div>
-                        <div class="hidden sm:block">
+                        <div class="hidden sm:block underline" @click="viewAddress($store.state.walletInfo.address)">
                             {{ $store.state.walletInfo.address }}
                         </div>
-                        <div class="border cursor-pointer border-text rounded-2xl px-2 text-sm text-text ml-2"
+                        <!-- <div class="border cursor-pointer border-text rounded-2xl px-2 text-sm text-text ml-2"
                             @click="copyContent($store.state.walletInfo.address)">
                             {{ $t('word.copy') }}
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="flex justify-between items-center text-text">
@@ -95,6 +95,9 @@ export default {
     },
     methods: {
         addressFilter,
+        viewAddress(address) {
+            window.open(`https://scan.pgchain.org/address/${address}`)
+        },
         fromWei(value) {
             if (value === '0' || value === null) {
                 // console.log('值为0', value)

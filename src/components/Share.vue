@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <div class="rounded text-text bg-primary text-center py-2 w-full" @click="showShare = true">
+        <div class="rounded text-text bg-primary text-center py-2 w-full" @click="show = true">
             {{ $t('share.share') }}
         </div>
         <van-share-sheet v-model="showShare" :cancel-text="$t('word.cancel')" :title="$t('share.share')" :options="options"
